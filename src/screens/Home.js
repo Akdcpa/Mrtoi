@@ -1,14 +1,19 @@
 import React from 'react';
 import PhoneIcon from '@material-ui/icons/Phone';
 import  MailOutlineIcon from '@material-ui/icons/MailOutline';
-import {AppBar,Typography , Toolbar }from '@material-ui/core'
-import AppBar from '../components/AppBar'
-// import backImage from './imgs/back.jpg'
+import {AppBar,Typography , Toolbar , Card }from '@material-ui/core'
+import AppHead from '../components/AppHead'
+import backImage from '../imgs/back.jpg'
 export default class App extends React.Component{
   render(){
     return(
-      <div style={styles.backGroundStyle} className={styles.root}>
-          <AppBar/>
+      <div className={styles.root}>
+          <AppHead/>
+          <div style={styles.header} >
+            <div style={styles.content} >
+
+            </div>
+          </div>
       </div>
     );
   }
@@ -16,22 +21,19 @@ export default class App extends React.Component{
 const styles = {
     root:{
         flexGrow: 1,
+        // display:'flex',
     },
-    appBar: {
-      background: "#040A0E",
-    //   padding: 10,
-      flex: 1,
-      width: 'auto',
-      flexDirection: "row",
-      justifyContent: "space-between"
+    header: {
+      backgroundImage: `url(${backImage})`,
+      height: '100vh',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
     },
-    backGroundStyle:{
-    // position:'absolute' ,
-    top: 0,
-    right: 0,
-    left: 0,
-    bottom: 0,
-    backgroundImage:`url(${backImage})`
+    content: {
+      height: '100%',
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
     }
   
   };
