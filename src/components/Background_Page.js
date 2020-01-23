@@ -1,13 +1,9 @@
 import React from 'react';
-import PhoneIcon from '@material-ui/icons/Phone';
-import  MailOutlineIcon from '@material-ui/icons/MailOutline';
 import {withStyles} from '@material-ui/core/styles'
-import {Typography , Button}from '@material-ui/core'
-import AppHead from './AppHead'
+import {Button}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
-import transitions from '@material-ui/core/styles/transitions';
 
  class Background_Page extends React.Component{
   constructor(props) {
@@ -42,11 +38,6 @@ import transitions from '@material-ui/core/styles/transitions';
       <div className={classes.root}>
           <div className={classes.header} >
             <div className={classes.content} >
-            <div className={{textAlign:'right'}} >
-                <text className={classes.textStyle} >Home</text>  
-                 <text className={classes.textStyle} >Blog</text>  
-                <text className={classes.textStyle} >Contact</text>  
-              </div>
               <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700 , fontFamily:'roboto',
                  textAlign:'center'}}>Mr.Toi</text>
@@ -77,7 +68,6 @@ import transitions from '@material-ui/core/styles/transitions';
 const styles =theme=>({
     root:{
         flexGrow: 1,
-        // display:'flex',
     },
     header: {
       backgroundImage: `url(${backImage})`,
@@ -90,10 +80,7 @@ const styles =theme=>({
       height: '100%',
       width: '100%',
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      // alignItems: 'flex-end',,
-      // justifyContent:'space-between',
       paddingTop:20,
-
     },
     textStyle:{
       color:'white',

@@ -78,6 +78,7 @@ const useStyles =theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
+    cursor:'pointer',
   },
   appBar:{
     backgroundColor:'black'
