@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Facebook from '../imgs/fb_icon.png'
-import Instagram from '../imgs/insta_icon.png'
+import Instagram from '../imgs/icon.png'
 import Twitter from '../imgs/twitter_icon.png'
 import LinkedIn from '../imgs/linkedin_icon.png'
 import PhoneIcon from '@material-ui/icons/Phone';
@@ -89,6 +89,9 @@ const useStyles =theme => ({
   fullList: {
     width: 'auto',
   },
+  paper: {
+    background: "rgba(0,0,0,0.6)"
+    }
 });
 
 class AppHead extends React.Component {
@@ -99,7 +102,7 @@ class AppHead extends React.Component {
       anchorEl:null ,
       mobileMoreAnchorEl:null,
       fb_size:35,
-       insta_size:35,
+       insta_size:28,
        twitter_size:35,
        in_size:35,
        mailColor:'white',
@@ -128,10 +131,10 @@ class AppHead extends React.Component {
  }
  instaSize=(event)=>{
   if(event.type==='mouseenter'){
-   this.setState({insta_size:50})
+   this.setState({insta_size:38})
  }
  else{
-   this.setState({insta_size:35})
+   this.setState({insta_size:28})
  }
 }
 inSize=(event)=>{
@@ -170,13 +173,14 @@ twitterSize=(event)=>{
     >
       <List>
         {['Home' , 'Blog' , 'Location'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index===0 ? <HomeIcon/> : index===1 ? <InfoIcon/>:<LocationOnIcon/> }</ListItemIcon>
-            <ListItemText primary={text} />
+          <ListItem button >
+            <ListItemIcon>{index===0 ? <HomeIcon style={{color:'white'}} /> :
+             index===1 ? <InfoIcon style={{color:'white'}} />:<LocationOnIcon style={{color:'white'}} /> }</ListItemIcon>
+            <ListItemText primary={<Typography style={{color:"white"}} >{text}</Typography>} />
           </ListItem>
         ))}
       </List>
-      <Divider style={{backgroundColor:'black'}} />
+      <Divider variant="middle" style={{backgroundColor:'white'}} />
       <div>
       <List className={classes.drawerMediaHide} >
           <ListItem >
@@ -241,7 +245,7 @@ twitterSize=(event)=>{
             </div>
           </Toolbar>
         </AppBar>
-        <Drawer width={100}  anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+        <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
       {sideList('right')}
       </Drawer>
       </div>
