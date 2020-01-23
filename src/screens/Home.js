@@ -6,13 +6,15 @@ import AppHead from '../components/AppHead'
 import backImage from '../imgs/back.jpg'
 import Background_Page from '../components/Background_Page'
 import New from '../components/New'
+import Drawer from '../components/Drawer'
 export default class App extends React.Component{
   render(){
     return(
       <div className={styles.root}>
         <AppHead/>
-        <Background_Page/> 
         {/* <New/> */}
+        {/* <Background_Page/>  */}
+
       </div>
     );
   }
@@ -20,7 +22,7 @@ export default class App extends React.Component{
 const styles ={
     root:{
         flexGrow: 1,
-        display:'flex',
+        // display:'flex',
     },
     header: {
       backgroundImage: `url(${backImage})`,

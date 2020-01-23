@@ -1,25 +1,121 @@
 import React from 'react';
-import PhoneIcon from '@material-ui/icons/Phone';
-import  MailOutlineIcon from '@material-ui/icons/MailOutline';
-import {AppBar,Typography , Toolbar }from '@material-ui/core'
-import {makeStyles,fade}from '@material-ui/core/styles'
-import backImage from '../imgs/back.jpg'
+import {withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import Facebook from '../imgs/fb_icon.png'
 import Instagram from '../imgs/insta_icon.png'
 import Twitter from '../imgs/twitter_icon.png'
 import LinkedIn from '../imgs/linkedin_icon.png'
+import PhoneIcon from '@material-ui/icons/Phone';
+import  MailOutlineIcon from '@material-ui/icons/MailOutline';
+import Drawer from '@material-ui/core/Drawer';
+import MoreOutlinedIcon from '@material-ui/icons/MoreOutlined';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import InfoIcon from '@material-ui/icons/Info';
+const useStyles =theme => ({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  mediaHide:{
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+    },
+  },
+  drawerMediaHide:{
+    display:'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+    },
+  },
+  textStyle:{
+    color:'white',
+    fontSize:'20px',
+    fontWeight:500,
+    paddingRight:30,
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  appBar:{
+    backgroundColor:'black'
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
 
-export default class AppHead extends React.Component{
+class AppHead extends React.Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       fb_size:35,
+      anchorEl:null ,
+      mobileMoreAnchorEl:null,
+      fb_size:35,
        insta_size:35,
        twitter_size:35,
        in_size:35,
        mailColor:'white',
+       top: false,
+       left: false,
+       bottom: false,
+       right: false,
+       drawerStatus:false,
     }
+  }
+  mailColorEvent=(event)=>{
+    if(event.type==='mouseenter'){
+     this.setState({mailColor:'#FA770A'})
+   }
+   else{
+     this.setState({mailColor:'white'})
+   }
   }
   fbSize=(event)=>{
     if(event.type==='mouseenter'){
@@ -53,28 +149,68 @@ twitterSize=(event)=>{
    this.setState({twitter_size:35})
  }
 }
-mailColorEvent=(event)=>{
-  if(event.type==='mouseenter'){
-   this.setState({mailColor:'#FA770A'})
- }
- else{
-   this.setState({mailColor:'white'})
- }
-}
+
+
   render(){
-    return(
-      <div style={styles.root} >
-        <AppBar position="static" style={styles.appBar}>
+    const {classes} = this.props;
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ ...this.state, [side]: open });
+  };
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        {['Home' , 'Blog' , 'Location'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index===0 ? <HomeIcon/> : index===1 ? <InfoIcon/>:<LocationOnIcon/> }</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider style={{backgroundColor:'black'}} />
+      <div>
+      <List className={classes.drawerMediaHide} >
+          <ListItem >
+             <a style={{cursor:'pointer'}} >
+             <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+          </ListItem>
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+          </ListItem>    
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+          </ListItem>
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+          </ListItem>
+      </List>
+      </div>
+
+    </div>
+  );
+    return (
+      <div className={classes.grow}>
+        <AppBar position="sticky" className={classes.appBar}  >
           <Toolbar>
-                <PhoneIcon/><Typography style={{marginRight:18}} >+918248314696</Typography>
+            <PhoneIcon/>
+            <Typography style={{marginRight:18}} >+918248314696</Typography>
                 <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
                 <MailOutlineIcon style={{color:this.state.mailColor}} /></a>
                 <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
                 <Typography style={{color:this.state.mailColor}} >ak@gmail.com</Typography></a>
-             
-              <div>
-              <Toolbar> 
-                {/* <Toolbar style={{alignItems:'right'}} > */}
+            <div>
+            <Toolbar className={classes.mediaHide} > 
                 <a onMouseEnter={this.fbSize}onMouseLeave={this.fbSize}
                  style={{cursor:'pointer'}} ><img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
                 <a onMouseEnter={this.instaSize}onMouseLeave={this.instaSize}
@@ -84,92 +220,34 @@ mailColorEvent=(event)=>{
                 <a onMouseEnter={this.twitterSize}onMouseLeave={this.twitterSize}
                 style={{cursor:'pointer'}} ><img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
               </Toolbar>
-              </div>
-              </Toolbar>
-             
-          </AppBar>
+            </div>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+            <text className={classes.textStyle} >Home</text>  
+                 <text className={classes.textStyle} >Blog</text>  
+                <text className={classes.textStyle} >Contact</text>  
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={toggleDrawer('right',true)}
+                color="inherit"
+              >
+                <MoreOutlinedIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer width={100}  anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+      {sideList('right')}
+      </Drawer>
       </div>
     );
   }
 }
-const styles = {
-    root:{
-        flexGrow: 1,
-    },
-    appBar: {
-      background: "#040A0E",
-      // flex: 1,
-      // width: 'auto',
-      // flexDirection: "row",
-      // justifyContent: "space-between"
-    },
-    textStyle:{
-      color:'white',
-      fontSize:'20px',
-      fontWeight:500,
-      paddingRight:30,
-    }
-  
-  };
-// export default App
-const useStyles = makeStyles(theme => ({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-}));
+AppHead.propTypes={
+  classes:PropTypes.object.isRequired,
+}
+export default withStyles(useStyles)(AppHead);

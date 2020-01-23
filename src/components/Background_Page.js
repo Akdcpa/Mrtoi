@@ -1,13 +1,15 @@
 import React from 'react';
 import PhoneIcon from '@material-ui/icons/Phone';
 import  MailOutlineIcon from '@material-ui/icons/MailOutline';
+import {withStyles} from '@material-ui/core/styles'
 import {Typography , Button}from '@material-ui/core'
 import AppHead from './AppHead'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PropTypes from 'prop-types';
 import transitions from '@material-ui/core/styles/transitions';
 
-export default class Background_Page extends React.Component{
+ class Background_Page extends React.Component{
   constructor(props) {
     super(props)
   
@@ -35,14 +37,15 @@ export default class Background_Page extends React.Component{
     }
   }
   render(){
+    const {classes} = this.props;
     return(
-      <div className={styles.root}>
-          <div style={styles.header} >
-            <div style={styles.content} >
-            <div style={{textAlign:'right'}} >
-                <text style={styles.textStyle} >Home</text>  
-                 <text style={styles.textStyle} >Blog</text>  
-                <text style={styles.textStyle} >Contact</text>  
+      <div className={classes.root}>
+          <div className={classes.header} >
+            <div className={classes.content} >
+            <div className={{textAlign:'right'}} >
+                <text className={classes.textStyle} >Home</text>  
+                 <text className={classes.textStyle} >Blog</text>  
+                <text className={classes.textStyle} >Contact</text>  
               </div>
               <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700 , fontFamily:'roboto',
@@ -71,14 +74,14 @@ export default class Background_Page extends React.Component{
     );
   }
 }
-const styles ={
+const styles =theme=>({
     root:{
         flexGrow: 1,
-        display:'flex',
+        // display:'flex',
     },
     header: {
       backgroundImage: `url(${backImage})`,
-      height: '90vh',
+      height: '100vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover'
@@ -100,5 +103,10 @@ const styles ={
       cursor:'pointer',
     }
   
-  };
+  });
+
+  Background_Page.propsTypes={
+    classes:PropTypes.object.isRequired,
+  }
 // export default App
+export default  withStyles(styles)(Background_Page);

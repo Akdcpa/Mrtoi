@@ -1,21 +1,28 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles ,withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import PropTypes from 'prop-types';
+import Facebook from '../imgs/fb_icon.png'
+import Instagram from '../imgs/insta_icon.png'
+import Twitter from '../imgs/twitter_icon.png'
+import LinkedIn from '../imgs/linkedin_icon.png'
+import PhoneIcon from '@material-ui/icons/Phone';
+import  MailOutlineIcon from '@material-ui/icons/MailOutline';
+import Drawer from '@material-ui/core/Drawer';
+import MoreOutlinedIcon from '@material-ui/icons/MoreOutlined';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import InfoIcon from '@material-ui/icons/Info';
 
-const useStyles = makeStyles(theme => ({
+const useStyles =theme => ({
   grow: {
     flexGrow: 1,
   },
@@ -27,30 +34,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
@@ -75,172 +58,224 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
-}));
+  mediaHide:{
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+    },
+  },
+  drawerMediaHide:{
+    display:'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+    },
+  },
+  textStyle:{
+    color:'white',
+    fontSize:'20px',
+    fontWeight:500,
+    paddingRight:30,
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  appBar:{
+    backgroundColor:'black'
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
 
-export default class New extends React.Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-        anchorEl:null,
-        mobileMoreAnchorEl:null,
-      }
+class New extends React.Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      anchorEl:null ,
+      mobileMoreAnchorEl:null,
+      fb_size:35,
+       insta_size:35,
+       twitter_size:35,
+       in_size:35,
+       mailColor:'white',
+       top: false,
+       left: false,
+       bottom: false,
+       right: false,
+       drawerStatus:false,
     }
-    
-render(){
-  const classes = useStyles();
-
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(this.state.anchorEl);
-  const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
-
-  function handleProfileMenuOpen(event) {
-    this.setState({anchorEl:event.currentTarget});
   }
-
-  function handleMobileMenuClose() {
-   this.setState({mobileMoreAnchorEl:null});
+  mailColorEvent=(event)=>{
+    if(event.type==='mouseenter'){
+     this.setState({mailColor:'#FA770A'})
+   }
+   else{
+     this.setState({mailColor:'white'})
+   }
   }
+  fbSize=(event)=>{
+    if(event.type==='mouseenter'){
+     this.setState({fb_size:50})
+   }
+   else{
+     this.setState({fb_size:35})
+   }
+ }
+ instaSize=(event)=>{
+  if(event.type==='mouseenter'){
+   this.setState({insta_size:50})
+ }
+ else{
+   this.setState({insta_size:35})
+ }
+}
+inSize=(event)=>{
+  if(event.type==='mouseenter'){
+   this.setState({in_size:50})
+ }
+ else{
+   this.setState({in_size:35})
+ }
+} 
+twitterSize=(event)=>{
+  if(event.type==='mouseenter'){
+   this.setState({twitter_size:50})
+ }
+ else{
+   this.setState({twitter_size:35})
+ }
+}
 
-  function handleMenuClose() {
-    // setAnchorEl(null);
-    this.setState({anchorEl:null});
-    handleMobileMenuClose();
-  }
 
-  function handleMobileMenuOpen(event) {
-    // setMobileMoreAnchorEl(event.currentTarget);
-    this.setState({mobileMoreAnchorEl:event.currentTarget});
-  }
+  render(){
 
-  const menuId = 'primary-search-account-menu';
-//   const renderMenu = (
-//     <Menu
-//       anchorEl={this.state.anchorEl}
-//       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       id={menuId}
-//       keepMounted
-//       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       open={isMenuOpen}
-//       onClose={handleMenuClose}
-//     >
-//       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-//       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-//     </Menu>
-//   );
+    const {classes} = this.props;
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  
+    const isMenuOpen = Boolean(this.state.anchorEl);
+    const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
+  
+    const handleProfileMenuOpen = event => {
+      this.setState({anchorEl:event.currentTarget});
+    };
+  
+    const handleMobileMenuClose = () => {
+      this.setState({mobileMoreAnchorEl:null});
+    };
+  
+    const handleMenuClose = () => {
+      this.setState({anchorEl:null});
+      handleMobileMenuClose();
+    };
+  
+    const handleMobileMenuOpen = event => {
+      this.setState({mobileMoreAnchorEl:event.currentTarget});
+    };
+  
+    const menuId = 'primary-search-account-menu';
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+ 
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ ...this.state, [side]: open });
+  };
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-//   const renderMobileMenu = (
-//     <Menu
-//       anchorEl={this.state.mobileMoreAnchorEl}
-//       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       id={mobileMenuId}
-//       keepMounted
-//       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-//       open={isMobileMenuOpen}
-//       onClose={handleMobileMenuClose}
-//     >
-//       <MenuItem>
-//         <IconButton aria-label="show 4 new mails" color="inherit">
-//           <Badge badgeContent={4} color="secondary">
-//             <MailIcon />
-//           </Badge>
-//         </IconButton>
-//         <p>Messages</p>
-//       </MenuItem>
-//       <MenuItem>
-//         <IconButton aria-label="show 11 new notifications" color="inherit">
-//           <Badge badgeContent={11} color="secondary">
-//             <NotificationsIcon />
-//           </Badge>
-//         </IconButton>
-//         <p>Notifications</p>
-//       </MenuItem>
-//       <MenuItem onClick={handleProfileMenuOpen}>
-//         <IconButton
-//           aria-label="account of current user"
-//           aria-controls="primary-search-account-menu"
-//           aria-haspopup="true"
-//           color="inherit"
-//         >
-//           <AccountCircle />
-//         </IconButton>
-//         <p>Profile</p>
-//       </MenuItem>
-//     </Menu>
-//   );
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        {['Home' , 'Blog' , 'Location'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index===0 ? <HomeIcon/> : index===1 ? <InfoIcon/>:<LocationOnIcon/> }</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider style={{backgroundColor:'black'}} />
+      <div>
+      <List className={classes.drawerMediaHide} >
+          <ListItem >
+             <a style={{cursor:'pointer'}} >
+             <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+          </ListItem>
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+          </ListItem>    
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+          </ListItem>
+          <ListItem >
+              <a style={{cursor:'pointer'}} >
+                <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+          </ListItem>
+      </List>
+      </div>
 
-  return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {/* {renderMobileMenu} */}
-      {/* {renderMenu} */}
     </div>
   );
-
-    }
-  
+    return (
+      <div className={classes.grow}>
+        <AppBar position="sticky" className={classes.appBar}  >
+          <Toolbar>
+            <PhoneIcon/>
+            <Typography style={{marginRight:18}} >+918248314696</Typography>
+                <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
+                <MailOutlineIcon style={{color:this.state.mailColor}} /></a>
+                <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
+                <Typography style={{color:this.state.mailColor}} >ak@gmail.com</Typography></a>
+            <div>
+            <Toolbar className={classes.mediaHide} > 
+                <a onMouseEnter={this.fbSize}onMouseLeave={this.fbSize}
+                 style={{cursor:'pointer'}} ><img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+                <a onMouseEnter={this.instaSize}onMouseLeave={this.instaSize}
+                 style={{cursor:'pointer'}} ><img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+                <a onMouseEnter={this.inSize}onMouseLeave={this.inSize}
+                 style={{cursor:'pointer'}} ><img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+                <a onMouseEnter={this.twitterSize}onMouseLeave={this.twitterSize}
+                style={{cursor:'pointer'}} ><img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+              </Toolbar>
+            </div>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+            <text className={classes.textStyle} >Home</text>  
+                 <text className={classes.textStyle} >Blog</text>  
+                <text className={classes.textStyle} >Contact</text>  
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={toggleDrawer('right',true)}
+                color="inherit"
+              >
+                <MoreOutlinedIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer width={100}  anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+      {sideList('right')}
+      </Drawer>
+      </div>
+    );
+  }
 }
+New.propTypes={
+  classes:PropTypes.object.isRequired,
+}
+export default withStyles(useStyles)(New);
