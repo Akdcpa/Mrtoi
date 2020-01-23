@@ -38,28 +38,29 @@ import PropTypes from 'prop-types';
       <div className={classes.root}>
           <div className={classes.header} >
             <div className={classes.content} >
+              <div style={{display:'flex' , justifyContent:'center' ,paddingTop:60,}} >
               <text style={{fontSize:'50px',
-                 color:'white' , fontWeight:700 , fontFamily:'roboto',
-                 textAlign:'center'}}>Mr.Toi</text>
-                 <br></br>
-              <text style={{color:'#D4EAF9' ,display:'inline-block', fontSize:'20px',textShadow:'10px',
-              fontFamily:'Droid Serif' ,fontStyle:'italic',padding:'25px' ,textAlign:'center' , boxSizing:'border-box',width:'60%' }} >
+                 color:'white' , fontWeight:700 }}>Mr.Toi</text>
+              </div>
+            <div className={classes.contentBreak}>
+              <text style={{color:'#D4EAF9', fontSize:'20px',
+              fontFamily:'Droid Serif' ,fontStyle:'italic',display:'flex',width:'60%',paddingTop:40 }} >
                 IoT is the best opportunity for career oriented creators as they 
                 can learn,develop, build and understand system along with their own ideas and techniques
                 </text>
-                <br></br>
-                <Button onMouseEnter={this.handleButtonColor} 
+            </div>
+             <div className={classes.readbuttonBreak} >
+              <Button size='large' onMouseEnter={this.handleButtonColor} 
                 onMouseLeave={this.handleButtonColor}
-                style={{backgroundColor:this.state.buttonColor ,justifyContent:'bottom',boxShadow:'#00a8bd', 
-              verticalAlign:'middle'}} >Read More</Button>
-              <div style={{position:'absolute',bottom:20,right:0,left:0}} >
-              {/* <text style={{color:'white'}} >explore</text> */}
+                style={{backgroundColor:this.state.buttonColor ,boxShadow:'#00a8bd',width:140 ,height:60 }} >Read More</Button>
+            </div>
+            </div>
+            {/* <div style={{position:'absolute',bottom:20,right:0,left:0}} > */}
+            <div className={classes.exploreBreak} >
               <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} style={{cursor:'pointer',color:this.state.exploreColor}}>
               <text style={{fontSize:18}} >Explore</text>
               <br></br><ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
-              </div>
             </div>
-            
           </div>
       </div>
     );
@@ -74,22 +75,51 @@ const styles =theme=>({
       height: '100vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
+      backgroundSize: 'cover',
+
     },
     content: {
       height: '100%',
       width: '100%',
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      paddingTop:20,
-    },
+      paddingTop:60,
+      [theme.breakpoints.down('xs')]:{
+        paddingTop:0,
+      },
+      justifyContent:'center',
+      alignItems: 'center',
+        },
     textStyle:{
       color:'white',
       fontSize:'20px',
       fontWeight:500,
       paddingRight:30,
       cursor:'pointer',
+    },
+    contentBreak:{
+      display:'flex' , 
+      justifyContent:'center',
+    },
+    readbuttonBreak:{
+      display:'flex' , 
+      justifyContent:'center',
+      paddingTop:90,
+      [theme.breakpoints.down('md')]:{
+        paddingTop:10,
+      },
+    },
+    exploreBreak:{
+      // display:'flex' , 
+      // justifyContent:'center',
+      // padding:'50px'
+      position:'absolute',
+      bottom:20,
+      [theme.breakpoints.down('xs')]:{
+        bottom:-10,
+      },
+      right:0,
+      left:0,
     }
-  
   });
 
   Background_Page.propsTypes={
