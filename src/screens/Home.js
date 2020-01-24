@@ -5,7 +5,6 @@ import {AppBar,Typography , Toolbar , Card , makeStyles}from '@material-ui/core'
 import AppHead from '../components/AppHead'
 import backImage from '../imgs/back.jpg'
 import Background_Page from '../components/Background_Page'
-import New from '../components/New'
 export default class App extends React.Component{
   render(){
     return(

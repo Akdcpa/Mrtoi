@@ -5,13 +5,15 @@ import ParticlesBg from 'particles-bg'
 import BlogHead from '../components/BlogHead'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core'
+import SecondNav from '../components/SecondNav'
 class Blog extends React.Component{
   render(){
     const {classes} = this.props;
     return(
       <div className={styles.root}>
-        <AppHead/>    
-        <BlogHead/> 
+        <AppHead/>   
+        <SecondNav/>
+         <BlogHead/>
         <BlogList/>
 
       </div>

@@ -4,7 +4,7 @@ import {Button}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
-
+import SecondNav from '../components/SecondNav'
  class Background_Page extends React.Component{
   constructor(props) {
     super(props)
@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
     this.state = {
        buttonColor:'#01bacf',
        exploreColor:'white',
+       scrollEvent:false,
+       textHide:true,
       
     }
   }
@@ -32,12 +34,39 @@ import PropTypes from 'prop-types';
       this.setState({exploreColor:'white'})
     }
   }
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop >60) {
+          this.setState({scrollEvent:true })
+          this.setState({textHide:false })
+
+      }
+    });
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop<60) {
+          this.setState({scrollEvent:false})
+          this.setState({textHide:true })
+
+      }
+    });
+    
+  }
   render(){
     const {classes} = this.props;
     return(
       <div className={classes.root}>
+         {
+          this.state.scrollEvent && <SecondNav/>
+        }
           <div className={classes.header} >
             <div className={classes.content} >
+           { this.state.textHide && <div className={classes.grow}>
+               <text className={classes.textStyle} >Home</text>  
+                 <text className={classes.textStyle} >Blog</text>  
+                <text className={classes.textStyle} >Contact</text>  
+              </div>}
               <div style={{display:'flex' , justifyContent:'center' ,paddingTop:60,}} >
               <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700 }}>Mr.Toi</text>
@@ -62,6 +91,8 @@ import PropTypes from 'prop-types';
               <br></br><ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
             </div>
           </div>
+            
+       
       </div>
     );
   }
@@ -69,7 +100,7 @@ import PropTypes from 'prop-types';
 const styles =theme=>({
     root:{
         flexGrow: 1,
-        paddingTop:40,
+        
     },
     header: {
       backgroundImage: `url(${backImage})`,
@@ -120,6 +151,9 @@ const styles =theme=>({
       },
       right:0,
       left:0,
+    },
+    grow:{
+      textAlign:'right'
     }
   });
 

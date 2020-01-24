@@ -99,7 +99,6 @@ const useStyles =theme => ({
       [theme.breakpoints.down('xs')]:{
         display:'flex'
       },
-      toolbar: theme.mixins.toolbar,
     },
 });
 
@@ -216,7 +215,7 @@ twitterSize=(event)=>{
   );
     return (
       <div className={classes.grow}>
-        <AppBar position="fixed" className={classes.appBar}  >
+        <AppBar position="static" className={classes.appBar}  >
           <Toolbar>
             <PhoneIcon/>
             <Typography style={{marginRight:18}} >+918248314696</Typography>
@@ -224,7 +223,13 @@ twitterSize=(event)=>{
                 <MailOutlineIcon style={{color:this.state.mailColor}} /></a>
                 <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
                 <Typography style={{color:this.state.mailColor}} >ak@gmail.com</Typography></a>
-            <div>
+         
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+            {/* <text className={classes.textStyle} >Home</text>  
+                 <text className={classes.textStyle} >Blog</text>  
+                <text className={classes.textStyle} >Contact</text>   */}
+                   <div>
             <Toolbar className={classes.mediaHide} > 
                 <a onMouseEnter={this.fbSize}onMouseLeave={this.fbSize}
                  style={{cursor:'pointer'}} ><img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
@@ -236,11 +241,6 @@ twitterSize=(event)=>{
                 style={{cursor:'pointer'}} ><img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
               </Toolbar>
             </div>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-            <text className={classes.textStyle} >Home</text>  
-                 <text className={classes.textStyle} >Blog</text>  
-                <text className={classes.textStyle} >Contact</text>  
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
@@ -255,9 +255,6 @@ twitterSize=(event)=>{
             </div>
           </Toolbar>
         </AppBar>
-
-        {/* <Toolbar/> */}
-
         <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
       {sideList('right')}
       </Drawer>
