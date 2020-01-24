@@ -21,6 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import InfoIcon from '@material-ui/icons/Info';
+
 const useStyles =theme => ({
   grow: {
     flexGrow: 1,
@@ -91,7 +92,15 @@ const useStyles =theme => ({
   },
   paper: {
     background: "rgba(0,0,0,0.6)"
-    }
+    },
+    divSytle:{
+      backgroundColor:'white',
+      dispaly:'none',
+      [theme.breakpoints.down('xs')]:{
+        display:'flex'
+      },
+      toolbar: theme.mixins.toolbar,
+    },
 });
 
 class AppHead extends React.Component {
@@ -180,7 +189,8 @@ twitterSize=(event)=>{
           </ListItem>
         ))}
       </List>
-      <Divider variant="middle" style={{backgroundColor:'white'}} />
+      <Divider variant="middle" className={classes.divSytle} />
+
       <div>
       <List className={classes.drawerMediaHide} >
           <ListItem >
@@ -206,7 +216,7 @@ twitterSize=(event)=>{
   );
     return (
       <div className={classes.grow}>
-        <AppBar position="sticky" className={classes.appBar}  >
+        <AppBar position="fixed" className={classes.appBar}  >
           <Toolbar>
             <PhoneIcon/>
             <Typography style={{marginRight:18}} >+918248314696</Typography>
@@ -245,6 +255,9 @@ twitterSize=(event)=>{
             </div>
           </Toolbar>
         </AppBar>
+
+        {/* <Toolbar/> */}
+
         <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
       {sideList('right')}
       </Drawer>

@@ -69,6 +69,7 @@ import PropTypes from 'prop-types';
 const styles =theme=>({
     root:{
         flexGrow: 1,
+        paddingTop:40,
     },
     header: {
       backgroundImage: `url(${backImage})`,
