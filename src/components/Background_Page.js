@@ -4,7 +4,29 @@ import {Button}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography';
 import SecondNav from '../components/SecondNav'
+import IconButton from '@material-ui/core/IconButton';
+import Facebook from '../imgs/fb_icon.png'
+import Instagram from '../imgs/icon.png'
+import Twitter from '../imgs/twitter_icon.png'
+import LinkedIn from '../imgs/linkedin_icon.png'
+import PhoneIcon from '@material-ui/icons/Phone';
+import  MailOutlineIcon from '@material-ui/icons/MailOutline';
+import Drawer from '@material-ui/core/Drawer';
+import MoreOutlinedIcon from '@material-ui/icons/MoreOutlined';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import InfoIcon from '@material-ui/icons/Info';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import MoreIcon from '../imgs/more.png'
  class Background_Page extends React.Component{
   constructor(props) {
     super(props)
@@ -14,6 +36,11 @@ import SecondNav from '../components/SecondNav'
        exploreColor:'white',
        scrollEvent:false,
        textHide:true,
+       top: false,
+       left: false,
+       bottom: false,
+       right: false,
+       drawerStatus:false,
       
     }
   }
@@ -55,18 +82,103 @@ import SecondNav from '../components/SecondNav'
   }
   render(){
     const {classes} = this.props;
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+
+    const toggleDrawer = (side, open) => event => {
+      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+      }
+      this.setState({ ...this.state, [side]: open });
+    };
+    const sideList = side => (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleDrawer(side, false)}
+        onKeyDown={toggleDrawer(side, false)}
+      >
+        <List>
+          {['Home' , 'Blog' , 'Location'].map((text, index) => (
+            <ListItem button >
+              <ListItemIcon>{index===0 ? <HomeIcon style={{color:'white'}} /> :
+               index===1 ? <InfoIcon style={{color:'white'}} />:<LocationOnIcon style={{color:'white'}} /> }</ListItemIcon>
+              <ListItemText primary={<Typography style={{color:"white"}} >{text}</Typography>} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider variant="middle" className={classes.divSytle} />
+  
+        <div>
+        <List className={classes.drawerMediaHide} >
+            <ListItem >
+               <a style={{cursor:'pointer'}} >
+               <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+            </ListItem>
+            <ListItem >
+                <a style={{cursor:'pointer'}} >
+                  <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+            </ListItem>    
+            <ListItem >
+                <a style={{cursor:'pointer'}} >
+                  <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+            </ListItem>
+            <ListItem >
+                <a style={{cursor:'pointer'}} >
+                  <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+            </ListItem>
+        </List>
+        </div>
+  
+      </div>
+    );
     return(
       <div className={classes.root}>
-         {
-          this.state.scrollEvent && <SecondNav/>
-        }
+           { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+            <AppBar position="sticky" className={classes.appBar}  >
+            <Toolbar>
+            <div className={classes.grow}/>
+            <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
+              <IconButton
+                 className={classes.sectionIcon}
+                 aria-label="show more"
+                 aria-controls={mobileMenuId}
+                 aria-haspopup="true"
+                 onClick={toggleDrawer('right',true)}
+                 color="inherit" >
+                 <ListAltIcon />
+               </IconButton>
+               </div> 
+            </Toolbar>
+          </AppBar>: <AppBar position="sticky" className={classes.appBar}  >
+                    <Toolbar>
+                    <div className={classes.grow}/>
+                      <text className={classes.textStyle} >Home</text>  
+                      <text className={classes.textStyle} >Blog</text>  
+                      <text className={classes.textStyle} >Contact</text>  
+                    </Toolbar>
+                  </AppBar> ) : null
+          }
           <div className={classes.header} >
+
             <div className={classes.content} >
-           { this.state.textHide && <div className={classes.grow}>
-               <text className={classes.textStyle} >Home</text>  
-                 <text className={classes.textStyle} >Blog</text>  
-                <text className={classes.textStyle} >Contact</text>  
-              </div>}
+          <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
+             <IconButton
+                className={classes.sectionIcon}
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={toggleDrawer('right',true)}
+                color="inherit" >
+                <ListAltIcon />
+              </IconButton>
+              </div>
+            { this.state.textHide ? 
+               <div className={classes.homeHide} > 
+            <div className={classes.grow}/>
+          <text className={classes.textStyle} >Home</text>  
+              <text className={classes.textStyle} >Blog</text>  
+              <text className={classes.textStyle} >Contact</text>  </div> : null
+          }
               <div style={{display:'flex' , justifyContent:'center' ,paddingTop:60,}} >
               <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700 }}>Mr.Toi</text>
@@ -81,7 +193,7 @@ import SecondNav from '../components/SecondNav'
              <div className={classes.readbuttonBreak} >
               <Button size='large' onMouseEnter={this.handleButtonColor} 
                 onMouseLeave={this.handleButtonColor}
-                style={{backgroundColor:this.state.buttonColor ,boxShadow:'#00a8bd',width:140 ,height:60 }} >Read More</Button>
+                style={{backgroundColor:this.state.buttonColor ,boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
             </div>
             </div>
             {/* <div style={{position:'absolute',bottom:20,right:0,left:0}} > */}
@@ -90,8 +202,11 @@ import SecondNav from '../components/SecondNav'
               <text style={{fontSize:18}} >Explore</text>
               <br></br><ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
             </div>
-          </div>
-            
+         
+            <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+      {sideList('right')}
+      </Drawer>
+          </div>  
        
       </div>
     );
@@ -100,7 +215,6 @@ import SecondNav from '../components/SecondNav'
 const styles =theme=>({
     root:{
         flexGrow: 1,
-        
     },
     header: {
       backgroundImage: `url(${backImage})`,
@@ -153,8 +267,56 @@ const styles =theme=>({
       left:0,
     },
     grow:{
-      textAlign:'right'
-    }
+      flexGrow:1,
+    },
+    appBar:{
+      backgroundColor:'black',
+      height:80,
+      // [theme.breakpoints.down('xs')]:{
+      //   height:70,
+      // },
+    },
+    divSytle:{
+      backgroundColor:'white',
+      dispaly:'none',
+      [theme.breakpoints.down('xs')]:{
+        display:'flex'
+      },
+    },
+    drawerMediaHide:{
+      display:'none',
+      // [theme.breakpoints.down('xs')]: {
+      //   display: 'block',
+      // },
+    },
+    paper: {
+      background: "rgba(0,0,0,0.6)"
+      },
+      divSytle:{
+        backgroundColor:'white',
+        dispaly:'none',
+        [theme.breakpoints.down('xs')]:{
+          display:'flex'
+        },
+      },
+      homeHide:{
+        textAlign:'right',
+        display:'block',
+        [theme.breakpoints.down('sm')]:{
+          display:'none'
+        }
+      },
+      sectionIcon:{
+        color:'white' , 
+        display:'none' , 
+        [theme.breakpoints.down('xs')]:{
+          display:'flex',
+          
+        }
+      },
+      sectionMore:{
+
+      }
   });
 
   Background_Page.propsTypes={

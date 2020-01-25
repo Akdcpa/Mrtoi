@@ -4,16 +4,18 @@ import  MailOutlineIcon from '@material-ui/icons/MailOutline';
 import {AppBar,Typography , Toolbar , Card , makeStyles}from '@material-ui/core'
 import AppHead from '../components/AppHead'
 import backImage from '../imgs/back.jpg'
+import HomeNav from '../components/HomeNav'
+import Blog from './Blog'
 import Background_Page from '../components/Background_Page'
 export default class App extends React.Component{
   render(){
     return(
       <div className={styles.root}>
         <AppHead/>
-        {/* <New/> */}
+        {/* <HomeNav/> */}
         <Background_Page/> 
-
-      </div>
+        {/* <Blog/> */}
+      </div>  
     );
   }
 }

@@ -3,7 +3,7 @@ import {AppBar , Toolbar , Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-class SecondNav extends React.Component{
+class HomeNav extends React.Component{
   render(){
     const {classes} = this.props;
     return(
@@ -26,7 +26,7 @@ const styles =theme=>({
       flexGrow:1
     },
     appBar:{
-      backgroundColor:'white',
+      backgroundColor:'transparent',
       height:100,
       [theme.breakpoints.down('xs')]:{
         height:70,
@@ -51,7 +51,7 @@ const styles =theme=>({
     },
 
 });
-SecondNav.propTypes={
+HomeNav.propTypes={
   classes:PropTypes.object.isRequired,
 }
-export default withStyles(styles)(SecondNav);
+export default withStyles(styles)(HomeNav);

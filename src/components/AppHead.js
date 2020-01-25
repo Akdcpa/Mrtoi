@@ -46,12 +46,12 @@ const useStyles =theme => ({
       width: 200,
     },
   },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
+  // sectionDesktop: {
+  //   display: 'none',
+  //   [theme.breakpoints.up('md')]: {
+  //     display: 'flex',
+  //   },
+  // },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -59,9 +59,9 @@ const useStyles =theme => ({
     },
   },
   mediaHide:{
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
+    display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
     },
   },
   drawerMediaHide:{
@@ -242,17 +242,16 @@ twitterSize=(event)=>{
               </Toolbar>
             </div>
             </div>
-            <div className={classes.sectionMobile}>
+            {/* <div className={classes.sectionMobile}>
               <IconButton
                 aria-label="show more"
                 aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={toggleDrawer('right',true)}
-                color="inherit"
-              >
+                color="inherit" >
                 <MoreOutlinedIcon />
               </IconButton>
-            </div>
+            </div> */}
           </Toolbar>
         </AppBar>
         <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>

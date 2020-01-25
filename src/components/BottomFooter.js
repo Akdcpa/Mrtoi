@@ -3,34 +3,37 @@ import {AppBar , Toolbar , Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-class SecondNav extends React.Component{
+class BottomFooter extends React.Component{
   render(){
     const {classes} = this.props;
     return(
-          <AppBar position="sticky" className={classes.appBar}  >
-          <Toolbar>
-            <div className={classes.grow} />
-            <text className={classes.textStyle} >Home</text>  
-            <text className={classes.textStyle} >Blog</text>  
-            <text className={classes.textStyle} >Contact</text>  
-          </Toolbar>
-        </AppBar>
+      <div className={classes.root} >
+        <div style={{backgroundColor:'black' ,width:"100%" , height:200 ,display:'flex' ,
+        alignItems:'center' , justifyContent:'flex-end'}} >
+                <Typography style={{color:'white' }} >Mr.Toi</Typography>
+        </div>
+        </div>
     );
   }
 }
 const styles =theme=>({
     root:{
         flexGrow: 1,
+        paddingTop:10,
     },
     grow:{
       flexGrow:1
     },
+    rootToolbar:theme.mixins.toolbar,
+
     appBar:{
       backgroundColor:'white',
-      height:100,
+      height:150,
       [theme.breakpoints.down('xs')]:{
-        height:70,
+        height:140,
       },
+      // justifyContent:'center',
+      // alignItems:'center'
     },
     sectionDesktop: {
       display: 'none',
@@ -39,7 +42,7 @@ const styles =theme=>({
       },
     }, 
      textStyle:{
-      color:'black',
+      color:'Black',
       fontSize:'20px',
       fontWeight:500,
       paddingRight:30,
@@ -51,7 +54,7 @@ const styles =theme=>({
     },
 
 });
-SecondNav.propTypes={
+BottomFooter.propTypes={
   classes:PropTypes.object.isRequired,
 }
-export default withStyles(styles)(SecondNav);
+export default withStyles(styles)(BottomFooter);

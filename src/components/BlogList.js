@@ -51,11 +51,11 @@ class BlogList extends React.Component{
   const {classes} = this.props;
         return (
         <div style={{display:'flex' , justifyContent:'center'  }} >  
-        <Paper  className={classes.rootPaper} >
+        <Paper elevation={6} className={classes.rootPaper} >
         <div className={classes.root} >
-          <div>
+          <div style={{paddingTop:100}} >
           { this.state.personData.map((data , index)=>( 
-            <Paper variant="outlined" className={classes.paper}>
+            <Paper elevation={3} className={classes.paper}>
             <Grid direction={this.state.gridAlign} className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
                 <Grid item md justify='center' >
                   <img className={classes.imageStyle} src={data.img} />
@@ -72,6 +72,7 @@ class BlogList extends React.Component{
                 </Grid>
             </Grid>
             </Paper>
+        
                )) }
             </div>
           </div>
@@ -86,6 +87,7 @@ const useStyles = theme => ({
     flexGrow: 1,
     overflow: 'hidden',
     padding: theme.spacing(0, 3),
+    paddingBottom: 50,
   },
   paper: {
     maxWidth: 900,
@@ -100,7 +102,9 @@ const useStyles = theme => ({
     paddingTop:40,
     [theme.breakpoints.down('xs')]:{
       gridSize:'row'
-    }
+    },
+    borderRadius:0
+
   },
   rootGrid:{
     // width:1200
@@ -151,12 +155,13 @@ const useStyles = theme => ({
     justifyContent:'center'
   },
   rootPaper:{
-    width:'75%' ,
+    width:'85%' ,
     backgroundColor:'white' ,
      marginTop:'-60px',
      [theme.breakpoints.down("sm")]:{
        marginTop:0
-     }
+     },
+     borderRadius:0
   }
 })
 
