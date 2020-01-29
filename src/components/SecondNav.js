@@ -10,7 +10,7 @@ class SecondNav extends React.Component{
           <AppBar position="sticky" className={classes.appBar}  >
           <Toolbar>
             <div className={classes.grow} />
-            <text className={classes.textStyle} >Home</text>  
+            <text className={classes.textStyle}  >Home</text>  
             <text className={classes.textStyle} >Blog</text>  
             <text className={classes.textStyle} >Contact</text>  
           </Toolbar>

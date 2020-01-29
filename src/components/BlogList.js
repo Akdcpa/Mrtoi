@@ -55,23 +55,28 @@ class BlogList extends React.Component{
         <div className={classes.root} >
           <div style={{paddingTop:100}} >
           { this.state.personData.map((data , index)=>( 
-            <Paper elevation={3} className={classes.paper}>
-            <Grid direction={this.state.gridAlign} className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
-                <Grid item md justify='center' >
-                  <img className={classes.imageStyle} src={data.img} />
-                  <div>
-                      <FacebookIcon style={{cursor:'pointer'}} />
-                      <InstagramIcon style={{cursor:'pointer'}} />
-                      <TwitterIcon style={{cursor:'pointer'}} />
-                      <LinkedInIcon style={{cursor:'pointer'}}  />
-                    </div>
+            <div style={{paddingBottom:30}} >
+            <Paper elevation={6}   className={classes.paper}>
+            <Grid  direction={this.state.gridAlign} className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
+                <Grid  item  md  >
+                  <div style={{textAlign:'left' , marginLeft:40 }} >
+                  <img  className={classes.imageStyle} src={data.img} /></div>
                 </Grid>
-                <Grid item md>
+                <Grid item  md>
                 <Typography variant='h5' className={classes.nameContent} >{data.name}</Typography>
                 <Typography className={classes.jobContent}  >{data.job}</Typography>
+                <Typography className={classes.nameContent} >
+                      <FacebookIcon  style={{cursor:'pointer' , paddingRight:15 , color:'#3b5998'}} />
+                      <InstagramIcon style={{cursor:'pointer',paddingRight:15 , color:'#e4405f'}} />
+                      <TwitterIcon style={{cursor:'pointer',paddingRight:15, color:'#00acee'}} />
+                      <LinkedInIcon style={{cursor:'pointer',paddingRight:15, color:'#0e76a8'}}  />
+                </Typography>
                 </Grid>
+    
             </Grid>
+            
             </Paper>
+            </div>
         
                )) }
             </div>
@@ -93,18 +98,18 @@ const useStyles = theme => ({
     maxWidth: 900,
     height:200,
     [theme.breakpoints.down('md')]:{
-      height:320
+      height:370,
     },
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     justifyContent:'center',
     backgroundColor:'white',
     paddingTop:40,
     [theme.breakpoints.down('xs')]:{
       gridSize:'row'
     },
-    borderRadius:0
-
+    borderRadius:0,
+    paddingBottom:20
   },
   rootGrid:{
     // width:1200
@@ -130,18 +135,30 @@ const useStyles = theme => ({
       textAlign:'center',
     },
     paddingTop:30,
+    marginRight:20,
     fontFamily:'Droid Serif ',
     fontStyle:'italic',
     fontWeight:'bold',
   },
   jobContent:{
     textAlign:'left',
+    marginRight:30,
     [theme.breakpoints.down('md')]:{
       textAlign:'center',
       fontFamily:'Droid Serif ',
       fontStyle:'italic',
 
     },
+    mediaAlign:{
+      // display:'none',
+      textAlign:'left',
+      // justifyContent:'flex-start',
+      // alignContent:'center',
+      // [theme.breakpoints.down('md')]:{
+      //   textAlign:'center'
+      // }
+    },
+
     paddingTop:30,
     fontWeight:5,
   },
