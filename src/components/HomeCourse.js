@@ -158,7 +158,10 @@ class HomeCourse extends React.Component{
               </div>
           <Button size='large' onMouseEnter={this.handleButtonColor} 
                 onMouseLeave={this.handleButtonColor}
-                style={{backgroundColor:this.state.buttonColor ,boxShadow:'#00a8bd',width:200 ,height:60 ,borderRadius:0}} >View All Courses</Button>
+                style={{backgroundColor:this.state.buttonColor ,
+                boxShadow:'#00a8bd',width:200 ,height:60 ,borderRadius:0 , marginTop:30}} >
+              View All Courses</Button>
+              <div style={{height:'20vh'}} ></div>
       </div>
     );
   }

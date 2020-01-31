@@ -23,21 +23,21 @@ import InfoIcon from '@material-ui/icons/Info';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import MoreIcon from '../imgs/more.png'
 import HomeNext from '../components/HomeNext'
+import BottomFooter from '../components/BottomFooter'
 import HomeCourse from '../components/HomeCourse'
+import Application from '../components/Application'
 class Home extends React.Component{
   constructor(props) {
     super(props)
-  
     this.state = {
        scrollEvent:false,
        textHide:true,
     }
   }
-  
   componentDidMount() {
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop >60) {
+      if (isTop >20) {
           this.setState({scrollEvent:true })
           this.setState({textHide:false })
 
@@ -107,8 +107,8 @@ class Home extends React.Component{
     return(
       <div className={styles.root}>
         <AppHead/>
-          {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
-        <HomeNav backColor='black' >
+          { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+        <HomeNav backColor='black' textColor="white" >
           <div className={classes.grow}/>
             <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
               <IconButton
@@ -121,18 +121,15 @@ class Home extends React.Component{
                  <ListAltIcon />
                </IconButton>
                </div> 
-        </HomeNav> : <AppBar position="sticky" className={classes.appBar}  >
-                    <Toolbar>
-                    <div className={classes.root}/>
-                      <text className={classes.textStyle} >Home</text>  
-                      <text className={classes.textStyle} >Blog</text>  
-                      <text className={classes.textStyle} >Contact</text>  
-                    </Toolbar>
-                  </AppBar> ) : null
-          } */}
-        {/* <Background_Page/>  */}
-        {/* <HomeNext/> */}
-        <HomeCourse/>
+        </HomeNav> : <HomeNav backColor='black' textColor="white"  >
+                  </HomeNav> ) : null
+          }
+        {/* <HomeNav  backColor="white" textColor="black" /> */}
+        <Background_Page/>  
+        <HomeNext/>
+        <HomeCourse/> 
+         <Application/>
+        <BottomFooter/> 
       </div>  
     );
   }
@@ -144,7 +141,7 @@ const styles =theme=>({
     },
     header: {
       backgroundImage: `url(${backImage})`,
-      height: '100vh',
+      height: window.innerHeight,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover'
@@ -172,7 +169,6 @@ const styles =theme=>({
       display:'none' , 
       [theme.breakpoints.down('xs')]:{
         display:'flex',
-        
       }
     },
   });

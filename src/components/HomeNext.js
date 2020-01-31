@@ -39,45 +39,57 @@ class HomeNext extends React.Component{
     const {classes} = this.props;
     return(
       <div className={styles.root}>
-        <Grid  container >
-            <Grid  align='center'  item  md>
-              <div style={{paddingTop:60 ,}} >
+        <div style={{height:'20vh'}} ></div>
+        <Grid  container xs >
+            <Grid xs align='center'  item>
+              <div>
                 <video  src={video_clip} autoPlay muted loop ></video>
               </div>
             </Grid> 
-            <Grid item md >
-                    <div  style={{paddingTop:60 ,}} > 
-                  <Typography style={{fontSize:29 , fontWeight:'bolder' , alignItem:'flex-start' , backgroundColor:' #42adf8 '}} >We are a passionate learning  </Typography>
-                  <Typography style={{fontSize:29 , fontWeight:'bolder', backgroundColor:' #42adf8 '}} >system from chennai. </Typography>
-                <Grid container >
-                  <Grid  item xs >
+            <Grid  align='center' xs item>
+                    <div   > 
+                  <Typography style={{fontSize:29 , fontWeight:'bolder' , alignItem:'flex-start' }} >We are a passionate learning  </Typography>
+                  <Typography style={{fontSize:29 , fontWeight:'bolder'}} >system from chennai. </Typography>
+                <Grid xs container >
+                  <Grid justify="center" xs item >
                     {
                       this.state.iotproject.slice(0,5).map((data , index)=>(
-
-                          <Typography style={{padding:13}} >
+                        <div style={{marginLeft:20}} >
+                          <Typography style={{float:'left' , marginBottom:10}} >
                             <DoneOutlineIcon style={{color:'blue'}} >
                             </DoneOutlineIcon>
                             {data}
                             </Typography>
-                      
+                            <br></br>
+                            <br></br>
+                            {/* <br></br> */}
+
+                            </div>
+                      // <ul style={{marginLeft:0 , paddingLeft:0 , float:'left'}} >
+                      // <li>{data}</li>
+                      // </ul>
                       ))
                       }
                   </Grid>
-                  <Grid item xs >
+                  <Grid justify="center" xs item>
                     {
                       this.state.iotproject.slice(5,10).map((data , index)=>(
-                          <Typography gutterBottom style={{padding:13 }} >
+                        <div> <Typography style={{ float:'left'}} gutterBottom >
                              <DoneOutlineIcon style={{color:'blue'}} >
                             </DoneOutlineIcon>
                             {data}</Typography>
+                            <br></br>
+                            <br></br>
+
+                            </div> 
                       ))
                       }
                   </Grid>
                 </Grid>
             </div>
-
             </Grid>
         </Grid>
+        <div style={{height:'20vh'}} ></div>
       </div>
     );
   }
@@ -93,3 +105,4 @@ HomeNext.propTypes={
 }
 
 export default withStyles(styles)(HomeNext);
+

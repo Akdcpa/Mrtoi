@@ -1,6 +1,6 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles'
-import {Button}from '@material-ui/core'
+import {Button  , Grid}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
@@ -132,59 +132,26 @@ import MoreIcon from '../imgs/more.png'
     );
     return(
       <div className={classes.root}>
-           {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
-            <AppBar position="sticky" className={classes.appBar}  >
-            <Toolbar>
-            <div className={classes.grow}/>
+          <div className={classes.header} >
             <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
               <IconButton
-                 className={classes.sectionIcon}
-                 aria-label="show more"
-                 aria-controls={mobileMenuId}
-                 aria-haspopup="true"
-                 onClick={toggleDrawer('right',true)}
-                 color="inherit" >
-                 <ListAltIcon />
-               </IconButton>
-               </div> 
-            </Toolbar>
-          </AppBar>: <AppBar position="sticky" className={classes.appBar}  >
-                    <Toolbar>
-                    <div className={classes.grow}/>
-                      <text className={classes.textStyle} >Home</text>  
-                      <text className={classes.textStyle} >Blog</text>  
-                      <text className={classes.textStyle} >Contact</text>  
-                    </Toolbar>
-                  </AppBar> ) : null
-          } */}
-          <div className={classes.header} >
-
-            <div className={classes.content} >
-          <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
-             <IconButton
-                className={classes.sectionIcon}
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={toggleDrawer('right',true)}
-                color="inherit" >
-                <ListAltIcon />
-              </IconButton>
+                  className={classes.sectionIcon}
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={toggleDrawer('right',true)}
+                  color="inherit" >
+                  <ListAltIcon />
+                </IconButton>
               </div>
-            { this.state.textHide ? 
-               <div className={classes.homeHide} > 
-            <div className={classes.grow}/>
-          <text className={classes.textStyle} >Home</text>  
-              <text className={classes.textStyle} >Blog</text>  
-              <text className={classes.textStyle} >Contact</text>  </div> : null
-            }
-              <div style={{display:'flex' , justifyContent:'center' ,paddingTop:60,}} >
+            <div className={classes.headerContent} style={{display:'flex',justifyContent:'center'}} >
+              <div>
               <text style={{fontSize:'50px',
-                 color:'white' , fontWeight:700 }}>Mr.Toi</text>
-              </div>
-            <div className={classes.contentBreak}>
-              <text style={{color:'#D4EAF9', fontSize:'20px',
-              fontFamily:'Droid Serif' ,fontStyle:'italic',display:'flex',width:'60%',paddingTop:40 }} >
+                 color:'white' , fontWeight:700}}>Mr.Toi</text>
+                </div>
+            </div>
+            <div className={classes.content} >
+              <text className={classes.textContent} >
                 IoT is the best opportunity for career oriented creators as they 
                 can learn,develop, build and understand system along with their own ideas and techniques
                 </text>
@@ -192,22 +159,25 @@ import MoreIcon from '../imgs/more.png'
              <div className={classes.readbuttonBreak} >
               <Button size='large' onMouseEnter={this.handleButtonColor} 
                 onMouseLeave={this.handleButtonColor}
-                style={{backgroundColor:this.state.buttonColor ,boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
+                style={{backgroundColor:this.state.buttonColor ,
+                boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
             </div>
             </div>
-            {/* <div style={{position:'absolute',bottom:20,right:0,left:0}} > */}
-            <div className={classes.exploreBreak} >
-              <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} style={{cursor:'pointer',color:this.state.exploreColor}}>
+            <div style={{position:'absolute',bottom:20,right:0,left:0}} >
+            <div className="align-bottom" >
+              <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
+              style={{cursor:'pointer',color:this.state.exploreColor}}>
               <text style={{fontSize:18}} >Explore</text>
-              <br></br><ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
+              <br></br>
+              <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
             </div>
          
             <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
       {sideList('right')}
       </Drawer>
-          </div>  
-       
       </div>
+        </div>
+
     );
   }
 }
@@ -216,24 +186,15 @@ const styles =theme=>({
         flexGrow: 1,
     },
     header: {
-      backgroundImage: `url(${backImage})`,
-      height: '100vh',
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) , url(${backImage})`,
+      height:window.innerHeight,
       backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
+      // backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      
     },
-    content: {
-      height: '100%',
-      width: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      paddingTop:60,
-      [theme.breakpoints.down('xs')]:{
-        paddingTop:0,
-      },
-      justifyContent:'center',
-      alignItems: 'center',
-        },
+    headerContent:{
+        marginTop:60
+    },
     textStyle:{
       color:'white',
       fontSize:'20px',
@@ -241,14 +202,24 @@ const styles =theme=>({
       paddingRight:30,
       cursor:'pointer',
     },
-    contentBreak:{
-      display:'flex' , 
-      justifyContent:'center',
+    content:{  display:'flex',
+    justifyContent:"center",
+    margin:40
+  },
+    textContent:{
+      color:'#D4EAF9', 
+      fontSize:'16px',
+      fontFamily:'Droid Serif' ,
+      fontStyle:'italic',
+     display:'flex',
+     justifyContent:"center",
+     minWidth:90,
+      maxWidth:900
     },
     readbuttonBreak:{
       display:'flex' , 
       justifyContent:'center',
-      paddingTop:90,
+      marginBottom:-50,
       [theme.breakpoints.down('md')]:{
         paddingTop:10,
       },
@@ -258,12 +229,13 @@ const styles =theme=>({
       // justifyContent:'center',
       // padding:'50px'
       // position:'absolute',
-      bottom:20,
-      [theme.breakpoints.down('xs')]:{
-        bottom:-10,
-      },
-      right:0,
-      left:0,
+      // bottom:20,
+      // [theme.breakpoints.down('xs')]:{
+      //   bottom:-10,
+      // },
+      flex:1,
+      justifyContent:'flex-end',
+      
     },
     grow:{
       flexGrow:1,
@@ -289,8 +261,7 @@ const styles =theme=>({
       // },
     },
     paper: {
-      background: "rgba(0,0,0,0.6)"
-      },
+      background: "rgba(0,0,0,0.6)",
       divSytle:{
         backgroundColor:'white',
         dispaly:'none',
@@ -301,6 +272,7 @@ const styles =theme=>({
       homeHide:{
         textAlign:'right',
         display:'block',
+      },
         [theme.breakpoints.down('sm')]:{
           display:'none'
         }
@@ -313,6 +285,19 @@ const styles =theme=>({
           
         }
       },
+      headAlign:{
+        flex:1,
+        textAlign:'center',
+        alignItems: 'flex-end',
+        justifyContent:'flex-end'
+      },
+      rootGrid:{
+        display:'block',
+        justifyContent:'flex-end',
+        alignItems:'flex-end',
+        alignContent: 'flex-end',
+        alignSelf: 'flex-end',
+      }
     
   });
 
@@ -321,3 +306,61 @@ const styles =theme=>({
   }
 // export default App
 export default  withStyles(styles)(Background_Page);
+
+   {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+            <AppBar position="sticky" className={classes.appBar}  >
+            <Toolbar>
+            <div className={classes.grow}/>
+            <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
+              <IconButton
+                 className={classes.sectionIcon}
+                 aria-label="show more"
+                 aria-controls={mobileMenuId}
+                 aria-haspopup="true"
+                 onClick={toggleDrawer('right',true)}
+                 color="inherit" >
+                 <ListAltIcon />
+               </IconButton>
+               </div> 
+            </Toolbar>
+          </AppBar>: <AppBar position="sticky" className={classes.appBar}  >
+                    <Toolbar>
+                    <div className={classes.grow}/>
+                      <text className={classes.textStyle} >Home</text>  
+                      <text className={classes.textStyle} >Blog</text>  
+                      <text className={classes.textStyle} >Contact</text>  
+                    </Toolbar>
+                  </AppBar> ) : null
+          } */}
+
+
+
+            {/* <div className={classes.headAlign} >
+             
+              </div> 
+            <div className={classes.contentBreak}>
+              <text className={classes.textContent} >
+                IoT is the best opportunity for career oriented creators as they 
+                can learn,develop, build and understand system along with their own ideas and techniques
+                </text>
+            </div>
+             <div className={classes.readbuttonBreak} >
+              <Button size='large' onMouseEnter={this.handleButtonColor} 
+                onMouseLeave={this.handleButtonColor}
+                style={{backgroundColor:this.state.buttonColor ,
+                boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
+            </div>
+            </div>
+            <div style={{position:'absolute',bottom:20,right:0,left:0}} >
+            <div className="align-bottom" >
+              <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
+              style={{cursor:'pointer',color:this.state.exploreColor}}>
+              <text style={{fontSize:18}} >Explore</text>
+              <br></br>
+              <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
+            </div>
+         
+            <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+      {sideList('right')}
+      </Drawer>
+      </div> */}
