@@ -7,12 +7,12 @@ class HomeNav extends React.Component{
   render(){
     const {classes} = this.props;
     return(
-          <AppBar position="sticky" className={classes.appBar}  >
+          <AppBar position="sticky"  style={{backgroundColor:this.props.backColor}} className={classes.appBar}  >
           <Toolbar>
             <div className={classes.grow} />
-            <text className={classes.textStyle} >Home</text>  
-            <text className={classes.textStyle} >Blog</text>  
-            <text className={classes.textStyle} >Contact</text>  
+            <text  style={{color:this.props.textColor}} className={classes.textStyle} >Home</text>  
+            <text style={{color:this.props.textColor}} className={classes.textStyle} >Blog</text>  
+            <text style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
           </Toolbar>
         </AppBar>
     );
@@ -26,7 +26,7 @@ const styles =theme=>({
       flexGrow:1
     },
     appBar:{
-      backgroundColor:'transparent',
+      // backgroundColor:,
       height:100,
       [theme.breakpoints.down('xs')]:{
         height:70,
@@ -39,7 +39,7 @@ const styles =theme=>({
       },
     }, 
      textStyle:{
-      color:'black',
+      // color:'white',
       fontSize:'20px',
       fontWeight:500,
       paddingRight:30,

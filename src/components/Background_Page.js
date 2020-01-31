@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography';
-import SecondNav from '../components/SecondNav'
 import IconButton from '@material-ui/core/IconButton';
 import Facebook from '../imgs/fb_icon.png'
 import Instagram from '../imgs/icon.png'
@@ -133,7 +132,7 @@ import MoreIcon from '../imgs/more.png'
     );
     return(
       <div className={classes.root}>
-           { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+           {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
             <AppBar position="sticky" className={classes.appBar}  >
             <Toolbar>
             <div className={classes.grow}/>
@@ -157,7 +156,7 @@ import MoreIcon from '../imgs/more.png'
                       <text className={classes.textStyle} >Contact</text>  
                     </Toolbar>
                   </AppBar> ) : null
-          }
+          } */}
           <div className={classes.header} >
 
             <div className={classes.content} >
@@ -178,7 +177,7 @@ import MoreIcon from '../imgs/more.png'
           <text className={classes.textStyle} >Home</text>  
               <text className={classes.textStyle} >Blog</text>  
               <text className={classes.textStyle} >Contact</text>  </div> : null
-          }
+            }
               <div style={{display:'flex' , justifyContent:'center' ,paddingTop:60,}} >
               <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700 }}>Mr.Toi</text>
@@ -258,7 +257,7 @@ const styles =theme=>({
       // display:'flex' , 
       // justifyContent:'center',
       // padding:'50px'
-      position:'absolute',
+      // position:'absolute',
       bottom:20,
       [theme.breakpoints.down('xs')]:{
         bottom:-10,
@@ -314,9 +313,7 @@ const styles =theme=>({
           
         }
       },
-      sectionMore:{
-
-      }
+    
   });
 
   Background_Page.propsTypes={

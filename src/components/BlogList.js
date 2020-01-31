@@ -54,7 +54,7 @@ class BlogList extends React.Component{
         <Paper elevation={6} className={classes.rootPaper} >
         <div className={classes.root} >
           <div style={{paddingTop:100}} >
-          { this.state.personData.map((data , index)=>( 
+          { this.state.personData.map((data , index)=>(   
             <div style={{paddingBottom:30}} >
             <Paper elevation={6}   className={classes.paper}>
             <Grid  direction={this.state.gridAlign} className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
