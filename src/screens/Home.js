@@ -131,8 +131,8 @@ class Home extends React.Component{
                   </AppBar> ) : null
           } */}
         {/* <Background_Page/>  */}
-        <HomeNext/>
-        {/* <HomeCourse/> */}
+        {/* <HomeNext/> */}
+        <HomeCourse/>
       </div>  
     );
   }

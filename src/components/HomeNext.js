@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {withStyles , Grid , Typography} from '@material-ui/core'
 import HomeNav from '../components/HomeNav'
 import Contact_Page from '../components/Contact_Page'
-import Mediapage from '../components/MedaiPage'
+import Mediapage from './MediaPage'
 import video_clip from '../video/learning_preview.mp4'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 

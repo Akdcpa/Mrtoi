@@ -9,10 +9,9 @@ export default class App extends React.Component{
   render(){
     return(
       <div className="App">
-        {/* <Home/> */}
+        <Home/>
         {/* <Blog/> */}
-
-        <Contact/>
+        {/* <Contact/> */}
       </div>
     );
   }

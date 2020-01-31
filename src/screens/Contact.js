@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core'
 import HomeNav from '../components/HomeNav'
 import Contact_Page from '../components/Contact_Page'
-import Mediapage from '../components/MedaiPage'
+import Mediapage from '../components/MediaPage'
 class Contact extends React.Component{
   render(){
     const {classes} = this.props;

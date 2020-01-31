@@ -221,7 +221,7 @@ const styles =theme=>({
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-
+      
     },
     content: {
       height: '100%',
