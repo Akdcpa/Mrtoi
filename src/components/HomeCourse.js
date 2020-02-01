@@ -175,6 +175,7 @@ const styles =theme=>({
                 height: '30vh',
                 width:'40vh',
                 borderRadius:0,
+                cursor:'pointer',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 padding:20
@@ -184,6 +185,7 @@ const styles =theme=>({
                 height: '30vh',
                 width:'40vh',
                 borderRadius:0,
+                cursor:'pointer',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 padding:20
@@ -192,6 +194,7 @@ const styles =theme=>({
       backgroundImage:`url(${LineFollower})`,
       height: '30vh',
       width:'40vh',
+      cursor:'pointer',
       borderRadius:0,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
@@ -204,7 +207,9 @@ const styles =theme=>({
       borderRadius:0,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
-      padding:20
+      padding:20,
+      cursor:'pointer',
+
     },
     card:{
       maxWidth:'45vh'

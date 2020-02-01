@@ -57,15 +57,15 @@ class BlogList extends React.Component{
           { this.state.personData.map((data , index)=>(   
             <div style={{paddingBottom:30}} >
             <Paper elevation={6}   className={classes.paper}>
-            <Grid  direction={this.state.gridAlign} className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
-                <Grid  item  md  >
+            <Grid  className={classes.rootGrid} container wrap="wrap-reverse" spacing={3}>
+                <Grid  item   >
                   <div style={{textAlign:'left' , marginLeft:40 }} >
                   <img  className={classes.imageStyle} src={data.img} /></div>
                 </Grid>
-                <Grid item  md>
-                <Typography variant='h5' className={classes.nameContent} >{data.name}</Typography>
+                <Grid item >
+                <Typography variant='h6' className={classes.nameContent} >{data.name}</Typography>
                 <Typography className={classes.jobContent}  >{data.job}</Typography>
-                <Typography className={classes.nameContent} >
+                <Typography className={classes.mediaContent} >
                       <FacebookIcon  style={{cursor:'pointer' , paddingRight:15 , color:'#3b5998'}} />
                       <InstagramIcon style={{cursor:'pointer',paddingRight:15 , color:'#e4405f'}} />
                       <TwitterIcon style={{cursor:'pointer',paddingRight:15, color:'#00acee'}} />
@@ -112,6 +112,10 @@ const useStyles = theme => ({
     paddingBottom:20
   },
   rootGrid:{
+    flexDirection:'row',
+    [theme.breakpoints.down('sm')]:{
+      flexDirection:'column'
+    }
     // width:1200
   },
   details: {
@@ -133,6 +137,7 @@ const useStyles = theme => ({
     textAlign:'left',
     [theme.breakpoints.down('md')]:{
       textAlign:'center',
+      // maxWidth:60
     },
     paddingTop:30,
     marginRight:20,
@@ -152,17 +157,21 @@ const useStyles = theme => ({
     mediaAlign:{
       // display:'none',
       textAlign:'left',
-      // justifyContent:'flex-start',
-      // alignContent:'center',
-      // [theme.breakpoints.down('md')]:{
-      //   textAlign:'center'
-      // }
+ 
     },
-
     paddingTop:30,
     fontWeight:5,
   },
-  appBar:{
+  mediaContent:{
+    textAlign:'left',
+    marginTop:10,
+    [theme.breakpoints.down('md')]:{
+      textAlign:'center',
+      
+    },
+  },
+  appBar:
+  {
     backgroundColor:'white',
     justifyContent:'center'
   },

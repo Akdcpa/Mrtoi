@@ -48,7 +48,6 @@ class Home extends React.Component{
       if (isTop<60) {
           this.setState({scrollEvent:false})
           this.setState({textHide:true })
-
       }
     });
     
@@ -107,7 +106,7 @@ class Home extends React.Component{
     return(
       <div className={styles.root}>
         <AppHead/>
-          { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+          {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
         <HomeNav backColor='black' textColor="white" >
           <div className={classes.grow}/>
             <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
@@ -123,7 +122,7 @@ class Home extends React.Component{
                </div> 
         </HomeNav> : <HomeNav backColor='black' textColor="white"  >
                   </HomeNav> ) : null
-          }
+          } */}
         {/* <HomeNav  backColor="white" textColor="black" /> */}
         <Background_Page/>  
         <HomeNext/>
