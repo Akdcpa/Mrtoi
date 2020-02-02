@@ -25,6 +25,7 @@ import MoreIcon from '../imgs/more.png'
 import HomeNext from '../components/HomeNext'
 import BottomFooter from '../components/BottomFooter'
 import HomeCourse from '../components/HomeCourse'
+import SpanIcon from '../components/SpanIcon'
 import Application from '../components/Application'
 class Home extends React.Component{
   constructor(props) {
@@ -37,7 +38,7 @@ class Home extends React.Component{
   componentDidMount() {
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop >20) {
+      if (isTop >0) {
           this.setState({scrollEvent:true })
           this.setState({textHide:false })
 
@@ -45,7 +46,7 @@ class Home extends React.Component{
     });
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop<60) {
+      if (isTop<0) {
           this.setState({scrollEvent:false})
           this.setState({textHide:true })
       }
@@ -98,7 +99,7 @@ class Home extends React.Component{
                 <a style={{cursor:'pointer'}} >
                   <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
             </ListItem>
-        </List>
+        </List> 
         </div>
   
       </div>
@@ -106,7 +107,7 @@ class Home extends React.Component{
     return(
       <div className={styles.root}>
         <AppHead/>
-          {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
+          {/* { this.state.scrollEvent ? 
         <HomeNav backColor='black' textColor="white" >
           <div className={classes.grow}/>
             <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
@@ -117,14 +118,18 @@ class Home extends React.Component{
                  aria-haspopup="true"
                  onClick={toggleDrawer('right',true)}
                  color="inherit" >
-                 <ListAltIcon />
+                 
+                 <SpanIcon/>
                </IconButton>
                </div> 
-        </HomeNav> : <HomeNav backColor='black' textColor="white"  >
-                  </HomeNav> ) : null
+        </HomeNav> : null
           } */}
         {/* <HomeNav  backColor="white" textColor="black" /> */}
-        <Background_Page/>  
+
+        {/* <HomeNav/> */}
+        <Background_Page/>
+        {/* <SpanIcon/> */}
+
         <HomeNext/>
         <HomeCourse/> 
          <Application/>

@@ -14,6 +14,7 @@ class CourseDetails extends React.Component{
         const {classes} = this.props;
         return(
             <div className={classes.root} >
+                <div className={classes.childDiv} >
                 <Grid className={classes.rootGrid} alignItems="center"   container>
                     <Grid justify="center" alignItems="center" item xs >
                         <div className={classes.descStyle} >
@@ -29,6 +30,7 @@ class CourseDetails extends React.Component{
                         </div>
                     </Grid>
                 </Grid>
+                </div>
             </div>
         );
     }
@@ -41,15 +43,30 @@ const styles=theme=>({
             justifyContent:'center',
             // alignItems:'flex-start',
         },
-        rootGrid:{
+        childDiv:{
+            // height:"100%",
+            width:"95%",
+            marginTop:15,
             backgroundColor:'#333',
+        },
+        rootGrid:{ 
+            
             flexDirection: 'row',
             // width:1300,
-            margin:50,
+            marginBottom:50,
+            marginTop:50,
             [theme.breakpoints.down('xs')]:{
                 flexDirection: 'column',
+                marginBottom:0,
+                marginTop:0,
+                margin:0,
+                padding:0
             },
+            // [theme.breakpoints.down('md')]:{
+            //     margin:0
+            // },
         },
+
         imgStyle:{
             minWidth:50,
             minHeight:50,
@@ -84,6 +101,7 @@ const styles=theme=>({
             // justifyContent:'center',
             // alignItems:'center',
             maxWidth:500,
+            textAlign:"center"
 
         }
     });

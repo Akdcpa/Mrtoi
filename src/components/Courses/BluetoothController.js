@@ -4,7 +4,156 @@ import PropTypes from 'prop-types'
 import CourseDetails from '../CourseDetails'
 import Image from '../../imgs/BluetoothControlledRobot.jpg'
 import TextStyle from './TextStyle';
+import List from './List'
+import Codes from './Codes'
 class BluetoothController extends React.Component{
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       items:[
+        " Arduino UNO [Buy Here]",
+        "L298N Motor Driver Module [Buy Here]",
+        "HC-05 Bluetooth Module",
+        "Robot Chassis",
+        "4 x 5V Geared Motors",
+        "Connecting Wires",
+        "Battery Holder",
+        "Power Supply",
+        "Android Phone",
+        "Bluetooth Controller App",
+       ],
+       code:[
+                  "#include<SoftwareSerial.h>",
+                  "   ",
+                  "#define IN1 12",
+                  "#define IN2 11",
+                  "#define IN3 10",
+                  "#define IN4 9",
+                  "//#define EN1 6",
+                  "//#define EN2 5",
+                  " ",
+                  "SoftwareSerial mySerial(2, 3);",
+                  "// RX, TX",
+                  "String data;",
+                  "int btVal;",
+                  " ",
+                  "void setup() ",
+                  " {  ",
+                    "//Serial.begin(115200);",
+                    "pinMode(IN1, OUTPUT);",
+                    "pinMode(IN2, OUTPUT);",
+                    "pinMode(IN3, OUTPUT);",
+                    "pinMode(IN4, OUTPUT);",
+                    "//pinMode(EN1, OUTPUT);",
+                    "//pinMode(EN2, OUTPUT);",
+                    "digitalWrite(IN1, LOW);",
+                    "digitalWrite(IN2, LOW);",
+                    "digitalWrite(IN3, LOW);",
+                    "digitalWrite(IN4, LOW);",
+                    "//analogWrite(EN1,63);",
+                    "//analogWrite(EN2,63);",
+                    "mySerial.begin(9600);",
+                "  }",
+                  " ",
+                  "void loop()",
+                  "{",
+                  "while, (mySerial.available())",
+                  "{  ",
+                  "  {  ",
+                        "data = mySerial.readStringUntil('\n');",
+                        "//Serial.print(str);             ",
+                    "}",
+                    " ",
+                    "btVal = (data.toInt());",
+                    "//Serial.print('BlueTooth Value');",
+                    "//Serial.println(btVal);",
+                    " ",
+                    " ",
+                    " ",
+                    "switch (btVal) ",
+                    "{",
+                        "case 1:",
+                          "//Serial.println('Forward');",
+                          "forward();",
+                          "break;",
+
+                        "case 2:        ",
+                        "//Serial.println('Reverse');",
+                          "reverse();",
+                          "break;",
+
+                        "case 3:",
+                        "//Serial.println('Left');",
+                          "left();",
+                          "break;",
+                          
+                        "case 4:",
+                          "//Serial.println('Right);",
+                          "right();",
+                          "break;",
+                          
+                        "case 5:",
+                          "//Serial.println('Stop');",
+                          "stoprobot();",
+                          "break;      ",
+                    " ",
+                    "}",
+                    " ",
+                  "} ",
+                  " ",
+                  " ",
+                                                                                
+                    "if (mySerial.available() < 0)",
+                      "{",
+                      "//Serial.println('No Bluetooth Data');",
+                      "}",
+                  " ",
+                  "}",
+                  " ",
+                  "void forward()",
+                  "{",
+                    "digitalWrite(IN1, HIGH);",
+                    "digitalWrite(IN2, LOW);",
+                    "digitalWrite(IN3, HIGH);",
+                    "digitalWrite(IN4, LOW);",
+                  "}",
+
+                  "void reverse()",
+                  "{",
+                    "digitalWrite(IN1, LOW);",
+                    "digitalWrite(IN2, HIGH);",
+                    "digitalWrite(IN3, LOW);",
+                    "digitalWrite(IN4, HIGH);",
+                  "}",
+
+                  "void left()",
+                  "{",
+                    "digitalWrite(IN1, LOW);",
+                    "digitalWrite(IN2, LOW);",
+                    "digitalWrite(IN3, HIGH);",
+                    "digitalWrite(IN4, LOW);",
+                  "}",
+
+                  "void right()",
+                  "{",
+                    "digitalWrite(IN1, HIGH);",
+                    "digitalWrite(IN2, LOW);",
+                    "digitalWrite(IN3, LOW);",
+                    "digitalWrite(IN4, LOW);",
+                  "}",
+
+                  "void stoprobot()",
+                  "{",
+                    "digitalWrite(IN1, LOW);",
+                    "digitalWrite(IN2, LOW);",
+                    "digitalWrite(IN3, LOW);",
+                    "digitalWrite(IN4, LOW);",
+                  "}",
+       ]
+    }
+  }
+  
   render(){
     const {classes} = this.props;   
     return(
@@ -37,9 +186,10 @@ class BluetoothController extends React.Component{
                         ></TextStyle>
                     </Grid>
                 </Grid>
+                      {/* <Codes code={this.state.code} ></Codes> */}
+                      <script src="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js" ></script> 
                 <Grid spacing={5} className={classes.bottomGrid}  container >
                         <Grid item>
-                    
                         <TextStyle title="AIM" 
                         description="  In this project, I will show you how to design and develop a 
                         Bluetooth Controlled Robot using Arduino, HC-05 Bluetooth Module and L298N Motor Driver Module. 
@@ -50,21 +200,8 @@ class BluetoothController extends React.Component{
                         <Grid item >
                            <div style={{clear:'left',textAlign:'justify',float:'left',marginTop:10}} >
                               <Typography style={{clear:'left',float:'left',fontWeight:'bolder',marginTop:10}}  >YOU WILL LEARN ABOUT</Typography>
-                              <div style={{marginLeft:40,clear:'left',float:'left'}} >
-                    
-                            <li> Arduino UNO [Buy Here]</li>
-                            <li>L298N Motor Driver Module [Buy Here]</li>
-                            <li>HC-05 Bluetooth Module</li>
-                            <li>Robot Chassis</li>
-                            <li>4 x 5V Geared Motors</li>
-                            <li>Connecting Wires</li>
-                            <li>Battery Holder</li>
-                            <li>Power Supply</li>
-                            <li>Android Phone</li>
-                            <li>Bluetooth Controller App</li>
+                                <List items={this.state.items} ></List>
                             </div>
-                            </div>
-
                         </Grid>
                 </Grid>  
           </div>
@@ -79,7 +216,7 @@ const styles =theme=>({
     },
     content:{
         margin:40,
-        marginLeft:90,
+        marginLeft:50,
         [theme.breakpoints.down('sm')]:{
             margin:10,
         }
@@ -98,10 +235,6 @@ const styles =theme=>({
         clear:'left',
         float:'left',
         marginTop:10,
-        // [theme.breakpoints.down('xs')]:{
-        //   textAlign:'center',
-        //   float:'left'
-        //   }
       }
 
   });

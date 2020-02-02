@@ -26,6 +26,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import InfoIcon from '@material-ui/icons/Info';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import MoreIcon from '../imgs/more.png'
+import HomeNav from './HomeNav'
+import SpanIcon from './SpanIcon'
  class Background_Page extends React.Component{
   constructor(props) {
     super(props)
@@ -63,7 +65,7 @@ import MoreIcon from '../imgs/more.png'
   componentDidMount() {
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop >60) {
+      if (isTop >30) {
           this.setState({scrollEvent:true })
           this.setState({textHide:false })
 
@@ -71,7 +73,7 @@ import MoreIcon from '../imgs/more.png'
     });
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop<60) {
+      if (isTop<30) {
           this.setState({scrollEvent:false})
           this.setState({textHide:true })
 
@@ -133,7 +135,21 @@ import MoreIcon from '../imgs/more.png'
     return(
       <div className={classes.root}>
           <div className={classes.header} >
-            <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
+          {
+            this.state.scrollEvent?<HomeNav textColor="white" backColor="black" ></HomeNav>:null
+          }
+          <div className={classes.grow} />
+          <div className={classes.homeDisplay} >
+            <text  style={{color:this.props.textColor}} className={classes.textStyle} >Home</text>  
+            <text style={{color:this.props.textColor}} className={classes.textStyle} >Blog</text>  
+            <text style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
+            </div>
+            <div className={classes.grow} />
+
+            <div className={classes.spanDisplay} >
+                <SpanIcon   color="#888" backColor="white"  ></SpanIcon>
+            </div>
+            {/* <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
               <IconButton
                   className={classes.sectionIcon}
                   aria-label="show more"
@@ -143,7 +159,7 @@ import MoreIcon from '../imgs/more.png'
                   color="inherit" >
                   <ListAltIcon />
                 </IconButton>
-              </div>
+              </div> */}
             <div className={classes.headerContent} style={{display:'flex',justifyContent:'center'}} >
               <div>
               <text style={{fontSize:'50px',
@@ -162,20 +178,18 @@ import MoreIcon from '../imgs/more.png'
                 style={{backgroundColor:this.state.buttonColor ,
                 boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
             </div>
-            </div>
-            <div style={{position:'absolute',bottom:20,right:0,left:0}} >
-            <div className="align-bottom" >
-              <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
+            <div>
+            <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
               style={{cursor:'pointer',color:this.state.exploreColor}}>
               <text style={{fontSize:18}} >Explore</text>
               <br></br>
               <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
-            </div>
-         
-            <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
+              </div>
+              <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
       {sideList('right')}
       </Drawer>
-      </div>
+            </div>
+     
         </div>
 
     );
@@ -205,6 +219,13 @@ const styles =theme=>({
     content:{  display:'flex',
     justifyContent:"center",
     margin:40
+  },
+  homeDisplay:{
+    dispaly:'flex',
+    textAlign:'right',
+    [theme.breakpoints.down("xs")]:{
+      display:'none',
+    }
   },
     textContent:{
       color:'#D4EAF9', 
@@ -236,6 +257,16 @@ const styles =theme=>({
       flex:1,
       justifyContent:'flex-end',
       
+    },
+    spanDisplay:{
+      display:'none',
+      [theme.breakpoints.down('xs')]:{
+       
+        display:'flex',
+        justifyContent:'flex-end',
+        marginRight:25,
+
+      },
     },
     grow:{
       flexGrow:1,

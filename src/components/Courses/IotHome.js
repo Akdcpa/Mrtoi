@@ -4,12 +4,30 @@ import PropTypes from 'prop-types'
 import CourseDetails from '../CourseDetails'
 import Image from '../../imgs/Home-Automation-using-Local-Host.jpg'
 import TextStyle from './TextStyle'
+import List from  './List'
 class IotHome extends React.Component{
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       items:[
+       "Nodemcu and its pin description and GPIOs",
+       "Setting up Arduino IDE for Nodemcu",
+       "Programming Nodemcu with Arduino IDE",
+       "To create a webserver on Nodemcu",
+       "To transfer data and to get response on from a webserver",
+       "Working of Relay Module",
+       "Interfacing Relay Modules",
+       "16×2 LCD screen and interfacing I2C module with Nodemcu",
+       ]
+    }
+  }
+  
   render(){
     const {classes} = this.props;   
     return(
       <div className={styles.root}>
-        <CourseDetails headLine="Home Automation using (Local Host)" description="What if I told you that you can program the lightening (dimming, flickering) 
+        <CourseDetails headLine="Home Automation" description="What if I told you that you can program the lightening (dimming, flickering) 
         at the touch of your smartphone? If you are a TV series binge-watcher 
         or movie enthusiast, you understand the lighting issue….."
          image={Image} />
@@ -33,16 +51,7 @@ class IotHome extends React.Component{
                         <Grid item >
                            <div style={{clear:'left',textAlign:'justify',float:'left',marginTop:10}} >
                               <Typography style={{clear:'left',float:'left',fontWeight:'bolder',marginTop:10}}  >YOU WILL LEARN ABOUT</Typography>
-                              <div style={{marginLeft:40,clear:'left',float:'left'}} >
-                            <li>Nodemcu and its pin description and GPIOs</li>
-                            <li>Setting up Arduino IDE for Nodemcu</li>
-                            <li>Programming Nodemcu with Arduino IDE</li>
-                            <li>To create a webserver on Nodemcu</li>
-                            <li>To transfer data and to get response on from a webserver</li>
-                            <li>Working of Relay Module</li>
-                            <li>Interfacing Relay Modules</li>
-                            <li>16×2 LCD screen and interfacing I2C module with Nodemcu</li>
-                            </div>
+                                  <List items={this.state.items} ></List>
                             </div>
 
                         </Grid>
@@ -59,7 +68,7 @@ const styles =theme=>({
     },
     content:{
         margin:40,
-        marginLeft:90,
+        marginLeft:50,
         [theme.breakpoints.down('sm')]:{
             margin:10,
         }

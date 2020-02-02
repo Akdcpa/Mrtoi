@@ -10,7 +10,7 @@ class BottomFooter extends React.Component{
       <div className={classes.root} >
         <div style={{backgroundColor:'black' ,width:"100%" , height:200 ,display:'flex' ,
         alignItems:'center' , justifyContent:'flex-end'}} >
-                <Typography style={{color:'white' }} >Mr.Toi</Typography>
+                <Typography style={{color:'white' , marginRight:30}} >Mr.Toi</Typography>
         </div>
         </div>
     );

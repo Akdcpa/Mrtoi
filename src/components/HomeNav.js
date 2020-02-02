@@ -47,7 +47,6 @@ const styles =theme=>({
       [theme.breakpoints.up('md')]: {
         display: 'flex',
       },
-      cursor:'pointer',
     },
 
 });

@@ -1,10 +1,41 @@
 import React from 'react';
-import {Typography , withStyles , Grid , Card,CardMedia , CardContent} from '@material-ui/core'
+import {Typography , withStyles , Grid , Card,CardMedia , CardContent, Paper} from '@material-ui/core'
 import PropTypes from 'prop-types'
 import CourseDetails from '../CourseDetails'
 import Image from '../../imgs/LineFollower.jpg'
 import TextStyle from './TextStyle'
+import List from './List'
 class LineFollower extends React.Component{
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       learn:[
+        "Line Sensor",
+        "Arduino",
+        "Motor driver",
+        "Chassis",
+        "Cables",
+        "Breadboard",
+        "Battery",
+       ],
+       parts:[
+        "Chassis (including motors and wheels )",
+        " Arduino Uno r3",
+        " L293D Motor Shield",
+        " IR Proximity Sensors (pair)",
+        " Jumper Wires",
+        " Switch",
+        " 4AA Battery Holder",
+       ],
+       tools:[
+       "Soldering Iron",
+        "Hot Glue Gun pog",
+        "Screw Driver",
+       ]
+    }
+  }
+  
   render(){
     const {classes} = this.props;   
     return(
@@ -14,10 +45,10 @@ class LineFollower extends React.Component{
         the Arduino will direct the motors to move with the help of a motor shield.…."
          image={Image} />
           <div className={classes.content} >
-              <Typography variant="h6" style={{fontFamily:"Open Sans Condensed",float:'left',}} >
-                  DESCRIPTION</Typography>
-                <Grid  direction="column" spacing={3} justifyContent="flex-start" container >
+                <Grid  direction="column" spacing={3}  container >
                     <Grid item >
+                    <div style={{textAlign:'left'}} ><Typography variant="h6" style={{fontFamily:"Open Sans Condensed"}} >
+                  DESCRIPTION</Typography></div> 
                         <TextStyle title="STEP 1: THE WORKING"
                         description="So there will be infrared proximity sensors placed on either side at the front of the robot. There are four possible sensor outcomes:-"
                         ></TextStyle>
@@ -40,25 +71,13 @@ class LineFollower extends React.Component{
                     </Grid>
                     <Grid item >
                     <div  style={{textAlign:'justify',marginTop:10}} > 
-                            <TextStyle title="STEP 2: PARTS REQUIRED"
+                        <TextStyle title="STEP 2: PARTS REQUIRED"
                         description="THE PARTS REQUIRED TO BUILD THE ROBOT ARE AS FOLLOWS :-"
                         ></TextStyle>
-                            <div style={{marginLeft:40,clear:'left',float:'left',marginTop:10}} >
-                            <li>Chassis (including motors and wheels )</li>
-                            <li> Arduino Uno r3</li>
-                            <li> L293D Motor Shield</li>
-                            <li> IR Proximity Sensors (pair)</li>
-                            <li> Jumper Wires</li>
-                            <li> Switch</li>
-                            <li> 4AA Battery Holder</li>
-                            </div>
+                          <List items={this.state.parts} ></List>
                             <Typography style={{fontFamily:'',textAlign:'justify',fontWeight:'bold',clear:'left',float:'left',marginTop:10}} >TOOLS REQUIRED :-</Typography>
                             <br></br>
-                            <div style={{marginLeft:40,clear:'left',float:'left',marginTop:10}} >
-                            <li>Soldering Iron</li>
-                            <li>Hot Glue Gun pog</li>
-                            <li>Screw Driver</li>
-                            </div>
+                            <List items={this.state.tools} ></List>
                             <Typography style={{fontFamily:'',textAlign:'justify',fontWeight:'bolder',clear:'left',float:'left',marginTop:10    }} >Gather these parts and be ready for the next step ...</Typography>
                         </div>
                     </Grid>
@@ -83,17 +102,8 @@ class LineFollower extends React.Component{
                         <Grid item >
                            <div style={{clear:'left',textAlign:'justify',float:'left',marginTop:10}} >
                               <Typography style={{clear:'left',float:'left',fontWeight:'bolder',marginTop:10}}  >YOU WILL LEARN ABOUT</Typography>
-                              <div style={{marginLeft:40,clear:'left',float:'left'}} >
-                            <li>Line Sensor</li>
-                            <li>Arduino</li>
-                            <li>Motor driver</li>
-                            <li>Chassis</li>
-                            <li>Cables</li>
-                            <li>Breadboard</li>
-                            <li>Battery</li>
+                              <List items={this.state.learn} ></List>
                             </div>
-                            </div>
-
                         </Grid>
                 </Grid>  
           </div>
@@ -104,11 +114,10 @@ class LineFollower extends React.Component{
 const styles =theme=>({
     root:{
         flexGrow: 1,
-       
     },
     content:{
         margin:40,
-        marginLeft:50,
+        // marginLeft:50,
         [theme.breakpoints.down('sm')]:{
             margin:10,
         }

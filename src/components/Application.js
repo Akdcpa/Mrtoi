@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Learning from '../imgs/Learning.png'
 import Dashboard from '../imgs/dashboard.png'
 import Iot from '../imgs/iot.png'
-
+import ApplicationCard from './ApplicationCard'
 class Application extends React.Component{
   render(){
     const {classes} = this.props;   
@@ -15,39 +15,23 @@ class Application extends React.Component{
                 Howdy, Mr.toi, we have brought together the best quality offers, projects for you!
             </Typography>
         </div>
-        <Grid alignContent="center" justify='center' className={classes.rootGrid} direction="row" align container spacing={2} >
+        <Grid alignItems="center" justify='center' className={classes.rootGrid} align container >
             <Grid item  >
-            <Card className={classes.sideCard} >
-            <img style={{width:'96px' , height:'96px'}} src={Learning} ></img>
-            <CardContent>
-                <Typography className={classes.text} variant="h5" >Learnig Systems</Typography>
-                <Typography>IoT devices give students and they give teachers the ability 
+            <ApplicationCard title="Learnig Systems" description="IoT devices give students and they give teachers the ability 
                     to measure student learning progress in real-time 
-                    training are included to Mr.toi</Typography>
-            </CardContent>
-            </Card>
+                    training are included to Mr.toi" image={Learning} ></ApplicationCard>
             </Grid>
-            <Grid item >
-               <Card className={classes.middleCard} >
-                <img src={Iot} ></img>
-                <CardContent>
-                <Typography  className={classes.text}variant="h5" >Iot software requirements and uses</Typography>
-                <Typography>The Arduino Integrated Development Environment
+            <Grid item  >
+            <ApplicationCard title="Iot software requirements and uses" description="The Arduino Integrated Development Environment
                      is a cross-platform application that is written in functions from C and C++. 
                      It is used to write and upload programs to Arduino compatible boards, 
-                    but also, with the help of 3rd party cores, other vendor development boards </Typography>
-            </CardContent>
-               </Card>
+                    but also, with the help of 3rd party cores, other vendor development boards" image={Iot} ></ApplicationCard>
             </Grid>
-            <Grid item >
-           <Card className={classes.sideCard} ><img src={Dashboard} ></img>
-                <CardContent>
-                        <Typography  className={classes.text}variant="h5" >User Dashboard</Typography>
-                        <Typography>With the help of IoT Dashboards, users and operators can
+            <Grid item  >
+                <ApplicationCard title="User Dashboard" description="With the help of IoT Dashboards, users and operators can
                              (remotely) monitor and control an environment from anywhere 
-                             in the world.</Typography>
-                </CardContent>
-            </Card>
+                             in the world." image={Dashboard} >
+                </ApplicationCard>
             </Grid>
         </Grid>
       </div>
@@ -81,24 +65,16 @@ const styles =theme=>({
         fontWeight: 'bold',
         fontFamily: '',
     },
-    sideCard:{
-        minWidth:100,
-        maxWidth:350,
-        borderRadius: 0,
-        minHeight:400,
-
-    },
-    middleCard:{
-        minWidth:350,
-        maxWidth:500,
-        borderRadius: 0,
-        maxHeight:500,
-        minHeight:400,
-
-
-    },
     rootGrid:{
         marginTop:-60,
+        flexDirection: 'row',
+        [theme.breakpoints.down('md')]:{
+          marginTop:0,
+          // marginLeft:10,
+          // display:'fle'
+          flexDirection: 'column',
+
+        }
     }
   });
 

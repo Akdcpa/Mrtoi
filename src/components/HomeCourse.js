@@ -16,8 +16,7 @@ import LineFollower from  '../imgs/LineFollower.jpg'
 import Obstacle from '../imgs/ObstacleAvoidingRobot.jpg'
 import AutoRobot from '../imgs/Home-Automation-using-Local-Host.jpg'
 import AddIcon from '@material-ui/icons/Add';
-
-
+import CourseCard from './CourseCard'
 class HomeCourse extends React.Component{
 
     constructor(props) {
@@ -29,7 +28,6 @@ class HomeCourse extends React.Component{
         auto_show:'none',
         line_show:'none',
         buttonColor:'#01bacf'
-
       }
     }
     handleBlue=(event)=>{
@@ -83,76 +81,24 @@ class HomeCourse extends React.Component{
                affordable wireless technology and transmit the data into the 
               cloud at a component level. It also provides a place to save data as well as management and security.</Typography>
         </div>
-        <div style={{ paddingTop:40}} >
-            <Grid style={{padding:20}} spacing={2}  container alignContent="center" justify='center' direction='row' >
+        <div  >
+            <Grid container alignContent="center" justify='center' direction='row' >
                         <Grid item >
-                          <Card className={classes.card} >
-                              <CardMedia onMouseEnter={this.handleBlue}  onMouseLeave={this.handleBlue} className={classes.blueStyle} >
-                                    <div style={{display:this.state.blue_show,backgroundColor: 'rgba(0, 0, 0, 0.6)' , height:'30vh' , width:'40vh' , alignItems:'center' , justifyContent:'center' }} >
-                                      <AddIcon style={{color:'white' , width:40 , height:40}} />
-                                    </div>
-                              </CardMedia>
-                              <CardContent>
-                              <Typography gutterBottom variant="h6" component="h2">
-                                    Blutooth Car
-                                  </Typography>
-                                  <Typography variant="body2" color="textSecondary" component="p">Control car moves by bluetooth
-                                  </Typography>
-
-                              </CardContent>
-                          </Card>
-                          
+                          <CourseCard title="Blutooth Car" image={BluetoothController} 
+                          description="Control car moves by bluetooth" ></CourseCard>                          
                         </Grid>
                         <Grid item>
-                          <Card className={classes.card}  >
-                          <CardMedia onMouseEnter={this.handleAuto}  onMouseLeave={this.handleAuto} className={classes.autoStyle} >
-                            <div style={{display:this.state.auto_show ,backgroundColor: 'rgba(0, 0, 0, 0.6)' , height:'30vh' ,width:'40vh' , alignItems:'center' , justifyContent:'center' }} >
-                              <AddIcon style={{color:'white' , width:40 , height:40}} />
-                            </div>
-                          </CardMedia>
-                            <CardContent>
-                            <Typography gutterBottom variant="h6" component="h2">
-                                    IOT Home
-                                  </Typography>
-                                  <Typography variant="body2" color="textSecondary" component="p">Automate your home
-                                  </Typography>
-
-                            </CardContent>
-                          </Card>
-                         
+                        <CourseCard title="IOT Home" image={AutoRobot} 
+                          description="Automate your home" ></CourseCard>        
                         </Grid>
                             <Grid item>
-                              <Card className={classes.card}  >
-                              <CardMedia onMouseEnter={this.handleLine}  onMouseLeave={this.handleLine} className={classes.lineStyle} >
-                                <div style={{display:this.state.line_show ,backgroundColor: 'rgba(0, 0, 0, 0.6)' , height:'30vh' , width:'40vh' , alignItems:'center' , justifyContent:'center' }} >
-                                <AddIcon style={{color:'white' , width:40 , height:40}} />
-                                </div>
-                              </CardMedia>
-                                <CardContent>
-                                <Typography gutterBottom variant="h6" component="h2">
-                                    Line Follower Robot
-                                  </Typography>
-                                  <Typography variant="body2" color="textSecondary" component="p">Line Follower Using Aurduino
-                                  </Typography>
-
-                                </CardContent>
-                              </Card>
-                            
+                              <CourseCard title="Line Follower Robot" image={LineFollower} 
+                          description="Line Follower Using Aurduino" ></CourseCard>  
                             </Grid>
                           
                             <Grid item>
-                              <Card className={classes.card}  >
-                              <CardMedia  onMouseEnter={this.handleObs}  onMouseLeave={this.handleObs}  className={classes.obsStyle} >
-                                <div style={{display:this.state.obs_show ,backgroundColor: 'rgba(0, 0, 0, 0.6)' , height:'30vh' , width:'40vh' , alignItems:'center' , justifyContent:'center' }} >
-                                <AddIcon style={{color:'white' , width:40 , height:40}} />
-                                </div>
-                            </CardMedia>
-                                <CardContent>
-                                    <Typography gutterBottom variant="h6" component="h2">Obstacle Avoiding vehicle
-                                        </Typography>
-                                      <Typography variant="body2" color="textSecondary" component="p"> Aurduino and ultrasonic sensor</Typography>
-                                </CardContent>
-                              </Card>
+                              <CourseCard title="Obstacle Avoiding vehicle" image={Obstacle} 
+                            description="Aurduino and ultrasonic sensor" ></CourseCard>
                             </Grid>
                     </Grid>
               </div>
@@ -169,47 +115,6 @@ class HomeCourse extends React.Component{
 const styles =theme=>({
     root:{
         flexGrow: 1,
-    },
-    blueStyle:{
-                backgroundImage:`url(${BluetoothController})`,
-                height: '30vh',
-                width:'40vh',
-                borderRadius:0,
-                cursor:'pointer',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                padding:20
-    },
-    autoStyle:{
-      backgroundImage:`url(${AutoRobot})`,
-                height: '30vh',
-                width:'40vh',
-                borderRadius:0,
-                cursor:'pointer',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                padding:20
-    },
-    lineStyle:{
-      backgroundImage:`url(${LineFollower})`,
-      height: '30vh',
-      width:'40vh',
-      cursor:'pointer',
-      borderRadius:0,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      padding:20
-    },
-    obsStyle:{
-      backgroundImage:`url(${Obstacle})`,
-      height: '30vh',
-      width:'40vh',
-      borderRadius:0,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      padding:20,
-      cursor:'pointer',
-
     },
     card:{
       maxWidth:'45vh'
