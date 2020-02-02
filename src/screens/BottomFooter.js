@@ -2,17 +2,20 @@ import React from 'react';
 import {AppBar , Toolbar , Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles'
+import {Redirect , withRouter } from 'react-router'
+import {connect} from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 class BottomFooter extends React.Component{
   render(){
     const {classes} = this.props;
     return(
-      <div className={classes.root} >
+      <div style={styles.root}  className={classes.root} >
         <div style={{backgroundColor:'black' ,width:"100%" , height:200 ,display:'flex' ,
         alignItems:'center' , justifyContent:'flex-end'}} >
-                <Typography style={{color:'white' , marginRight:30}} >Mr.Toi</Typography>
+                 <Typography style={{color:'white' ,fontSize:10,marginRight:30}} >Mr.Toi</Typography>
         </div>
         </div>
+     
     );
   }
 }
@@ -54,6 +57,7 @@ const styles =theme=>({
     },
 
 });
+
 BottomFooter.propTypes={
   classes:PropTypes.object.isRequired,
 }

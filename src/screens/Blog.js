@@ -3,7 +3,6 @@ import BlogList from '../components/BlogList'
 import AppHead from '../components/AppHead'
 import ParticlesBg from 'particles-bg'
 import BlogHead from '../components/BlogHead'
-import BottomFooter from '../components/BottomFooter'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core'
 import HomeNav from '../components/HomeNav'
@@ -16,7 +15,6 @@ class Blog extends React.Component{
          <HomeNav backColor='white' textColor="black" />
          <BlogHead/>
         <BlogList/>
-        <BottomFooter/>
       </div>
     );
   }

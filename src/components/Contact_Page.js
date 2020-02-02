@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import {withStyles , Typography , Grid ,Paper, Button , OutlinedInput} from '@material-ui/core'
+import {withStyles , Typography , Grid ,Paper, Button ,Card, OutlinedInput} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Letter from '../imgs/letter.svg'
-import Footer from '../components/BottomFooter'
  class Contact_Page extends React.Component {
   render() {
       const {classes} = this.props;
@@ -15,7 +14,7 @@ import Footer from '../components/BottomFooter'
                     <img className={classes.letterStyle} src={Letter} ></img>
                 </div>        
       </Grid>
-      <Paper elevation={3} className={classes.paper} >
+      <Card elevation={3} className={classes.paper} >
       <Grid className={classes.secondGrid} justify='space-between' item direction='column'  >
           <div  className={classes.textField}  >
            <OutlinedInput className={classes.fieldWidth} style={{borderRadius:35 ,notchedOutline:30}} placeholder="Firstname" ></OutlinedInput>
@@ -33,7 +32,7 @@ import Footer from '../components/BottomFooter'
            <Button className={classes.fieldWidth} style={{borderRadius:35 ,height:50  ,background:'rgba(0, 0, 0, 0) -webkit-linear-gradient(left, rgb(148, 115, 221) 0%, rgb(26, 201, 228) 100%) repeat scroll 0% 0%' }} >Send Message</Button>
            </div>
       </Grid>
-      </Paper>
+      </Card>
     </Grid>
               
       </div>

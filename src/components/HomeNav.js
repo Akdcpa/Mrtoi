@@ -3,16 +3,30 @@ import {AppBar , Toolbar , Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton';
+import SpanIcon from './SpanIcon'
+import DisplayDrawer from './DisplayDrawer'
 class HomeNav extends React.Component{
+constructor(props) {
+  super(props)
+
+  this.state = {
+    top: false,
+    left: false,
+    bottom: false,
+    right: false, 
+    drawerStatus:false,
+  }
+}
+
   render(){
     const {classes} = this.props;
     return(
           <AppBar position="sticky"  style={{backgroundColor:this.props.backColor}} className={classes.appBar}  >
           <Toolbar>
-            <div className={classes.grow} />
-            <text  style={{color:this.props.textColor}} className={classes.textStyle} >Home</text>  
-            <text style={{color:this.props.textColor}} className={classes.textStyle} >Blog</text>  
-            <text style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
+            {/* <div style={{ marginRight:20}} > */}
+              <DisplayDrawer iconcolor={this.props.iconcolor} textColor={this.props.textColor} ></DisplayDrawer>
+            {/* </div> */}
           </Toolbar>
         </AppBar>
     );
@@ -32,6 +46,18 @@ const styles =theme=>({
         height:70,
       },
     },
+      display:{
+        display:'flex',
+        [theme.breakpoints.down("xs")]:{
+          display:'none'
+        }
+    },
+    displayDrawer:{
+      display:'none',
+      [theme.breakpoints.down("xs")]:{
+        display:'flex'
+      }
+  },
     sectionDesktop: {
       display: 'none',
       [theme.breakpoints.up('md')]: {
@@ -47,6 +73,19 @@ const styles =theme=>({
       [theme.breakpoints.up('md')]: {
         display: 'flex',
       },
+    },
+    divSytle:{
+      backgroundColor:'white',
+      dispaly:'none',
+      [theme.breakpoints.down('xs')]:{
+        display:'flex'
+      },
+    },
+    drawerMediaHide:{
+      display:'none',
+      // [theme.breakpoints.down('xs')]: {
+      //   display: 'block',
+      // },
     },
 
 });

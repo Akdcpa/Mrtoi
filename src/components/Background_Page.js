@@ -28,6 +28,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import MoreIcon from '../imgs/more.png'
 import HomeNav from './HomeNav'
 import SpanIcon from './SpanIcon'
+import DisplayDrawer from './DisplayDrawer'
  class Background_Page extends React.Component{
   constructor(props) {
     super(props)
@@ -42,6 +43,7 @@ import SpanIcon from './SpanIcon'
        bottom: false,
        right: false,
        drawerStatus:false,
+      
       
     }
   }
@@ -83,83 +85,13 @@ import SpanIcon from './SpanIcon'
   }
   render(){
     const {classes} = this.props;
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-
-    const toggleDrawer = (side, open) => event => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-      this.setState({ ...this.state, [side]: open });
-    };
-    const sideList = side => (
-      <div
-        className={classes.list}
-        role="presentation"
-        onClick={toggleDrawer(side, false)}
-        onKeyDown={toggleDrawer(side, false)}
-      >
-        <List>
-          {['Home' , 'Blog' , 'Location'].map((text, index) => (
-            <ListItem button >
-              <ListItemIcon>{index===0 ? <HomeIcon style={{color:'white'}} /> :
-               index===1 ? <InfoIcon style={{color:'white'}} />:<LocationOnIcon style={{color:'white'}} /> }</ListItemIcon>
-              <ListItemText primary={<Typography style={{color:"white"}} >{text}</Typography>} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider variant="middle" className={classes.divSytle} />
-  
-        <div>
-        <List className={classes.drawerMediaHide} >
-            <ListItem >
-               <a style={{cursor:'pointer'}} >
-               <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
-            </ListItem>
-            <ListItem >
-                <a style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
-            </ListItem>    
-            <ListItem >
-                <a style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
-            </ListItem>
-            <ListItem >
-                <a style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
-            </ListItem>
-        </List>
-        </div>
-  
-      </div>
-    );
     return(
       <div className={classes.root}>
           <div className={classes.header} >
-          {
-            this.state.scrollEvent?<HomeNav textColor="white" backColor="black" ></HomeNav>:null
-          }
-          <div className={classes.grow} />
-          <div className={classes.homeDisplay} >
-            <text  style={{color:this.props.textColor}} className={classes.textStyle} >Home</text>  
-            <text style={{color:this.props.textColor}} className={classes.textStyle} >Blog</text>  
-            <text style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
-            </div>
-            <div className={classes.grow} />
-
-            <div className={classes.spanDisplay} >
-                <SpanIcon   color="#888" backColor="white"  ></SpanIcon>
-            </div>
-            {/* <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
-              <IconButton
-                  className={classes.sectionIcon}
-                  aria-label="show more"
-                  aria-controls={mobileMenuId}
-                  aria-haspopup="true"
-                  onClick={toggleDrawer('right',true)}
-                  color="inherit" >
-                  <ListAltIcon />
-                </IconButton>
-              </div> */}
+           
+            <DisplayDrawer extColor="white"
+              iconcolor="white"
+              backColor="black"  ></DisplayDrawer>
             <div className={classes.headerContent} style={{display:'flex',justifyContent:'center'}} >
               <div>
               <text style={{fontSize:'50px',
@@ -185,9 +117,6 @@ import SpanIcon from './SpanIcon'
               <br></br>
               <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
               </div>
-              <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
-      {sideList('right')}
-      </Drawer>
             </div>
      
         </div>
@@ -223,6 +152,7 @@ const styles =theme=>({
   homeDisplay:{
     dispaly:'flex',
     textAlign:'right',
+    // marginTop:20,
     [theme.breakpoints.down("xs")]:{
       display:'none',
     }

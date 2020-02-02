@@ -1,10 +1,10 @@
 import React from 'react';
 import {Typography , withStyles , Grid , Card,CardMedia , CardContent, Paper} from '@material-ui/core'
 import PropTypes from 'prop-types'
-import CourseDetails from '../CourseDetails'
-import Image from '../../imgs/LineFollower.jpg'
-import TextStyle from './TextStyle'
-import List from './List'
+import CourseDetails from '../components/CourseDetails'
+import Image from '../imgs/LineFollower.jpg'
+import TextStyle from '../components/Courses/TextStyle';
+import List from '../components/Courses/List'
 class LineFollower extends React.Component{
   constructor(props) {
     super(props)

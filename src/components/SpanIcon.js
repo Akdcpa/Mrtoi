@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar , Toolbar , Typography} from '@material-ui/core'
+import {AppBar , Toolbar , Typography , Box} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles'
 class SpanIcon extends React.Component{
@@ -7,12 +7,11 @@ class SpanIcon extends React.Component{
     const {classes} = this.props;
     return(
         // <div style={{display:'flex', justifyContent:'flex-end'}} >
-      <div  style={{width:23 , height:20,backgroundColor:this.props.backColor,} }>
+      <div  style={{width:23 , height:20,backgroundColor:this.props.backColor,}}>
           <span style={{backgroundColor:this.props.color}} className={classes.hr} ></span>
           <span style={{backgroundColor:this.props.color}} className={classes.hr} ></span>
           <span style={{backgroundColor:this.props.color}} className={classes.hr}></span>
       </div>
-    //   </div>
     );
   }
 }

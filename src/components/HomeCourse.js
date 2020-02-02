@@ -3,7 +3,6 @@ import BlogList from '../components/BlogList'
 import AppHead from '../components/AppHead'
 import ParticlesBg from 'particles-bg'
 import BlogHead from '../components/BlogHead'
-import BottomFooter from '../components/BottomFooter'
 import PropTypes from 'prop-types';
 import {withStyles , Grid , Typography , Card , CardMedia , CardContent , Button} from '@material-ui/core'
 import HomeNav from '../components/HomeNav'

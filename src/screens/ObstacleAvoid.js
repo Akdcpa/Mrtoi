@@ -1,10 +1,10 @@
 import React from 'react';
 import {Typography , withStyles , Grid , Card,CardMedia , CardContent} from '@material-ui/core'
 import PropTypes from 'prop-types'
-import TextStyle from './TextStyle'
-import CourseDetails from '../CourseDetails'
-import Image from '../../imgs/ObstacleAvoidingRobot.jpg'
-import List from './List'
+import CourseDetails from '../components/CourseDetails'
+import Image from '../imgs/ObstacleAvoidingRobot.jpg'
+import TextStyle from '../components/Courses/TextStyle';
+import List from '../components/Courses/List'
 class ObstacleAvoid extends React.Component{
   constructor(props) {
     super(props)
