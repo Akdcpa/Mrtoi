@@ -32,6 +32,8 @@ import SpanIcon from './SpanIcon'
 import {connect , MapStateToProps , MapDispatchToProps , Provider} from 'react-redux'
 import { withRouter , Redirect } from 'react-router-dom'
 import ReactDOM from 'react-dom'
+
+import { ClickAwayListener } from '@material-ui/core';
   import  compose from 'recompose/compose'
  class DisplayDrawer extends React.Component{
   constructor(props) {
@@ -52,10 +54,27 @@ import ReactDOM from 'react-dom'
        in_size:35,
     }
   }
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop >30) {
+          this.state.scrollEvent = true ;
+          this.setState({scrollEvent:true })
+          // this.setState({textHide:false })
 
-   changeLocation=()=>{
-      this.props.history.push("/Blog");
-    } 
+      }
+    });
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop<30) {
+        this.state.scrollEvent = false ;
+          this.setState({scrollEvent:false})
+          // this.setState({textHide:true })
+      }
+    });
+    
+  }
+ 
   render(){
     const rootElement=document.getElementById('root');
     // ReactDOM.render(
@@ -81,32 +100,46 @@ import ReactDOM from 'react-dom'
           onKeyDown={toggleDrawer(side, false)}
         >
           <List>
-          {['Home' , 'Blog' , 'Location'].map((text, index) => (
-            <ListItem button >
-              <ListItemIcon>{index===0 ? <HomeIcon style={{color:'white'}} /> :
-               index===1 ? <InfoIcon style={{color:'white'}} />:<LocationOnIcon style={{color:'white'}} /> }</ListItemIcon>
-              <ListItemText primary={<Typography style={{color:"white"}} >{text}</Typography>} />
+          <ListItem
+            onClick={()=>this.props.history.push("/")}
+            button >
+              <ListItemIcon>
+              <HomeIcon style={{color:'white'}} /></ListItemIcon>
+              <ListItemText primary={<Typography style={{color:"white"}} >Home</Typography>} />
             </ListItem>
-          ))}
+            <ListItem
+            onClick={()=>this.props.history.push("/Blog")}
+            button >
+              <ListItemIcon> <InfoIcon style={{color:'white'}}/>
+              </ListItemIcon>
+              <ListItemText primary={<Typography style={{color:"white"}} >Blog</Typography>} />
+            </ListItem>  
+            <ListItem
+            onClick={()=>this.props.history.push("/Contact")}
+            button >
+              <ListItemIcon><LocationOnIcon style={{color:'white'}} /> </ListItemIcon>
+              <ListItemText primary={<Typography style={{color:"white"}} >Contact</Typography>} />
+            </ListItem>
+
         </List>
         {/* <Divider variant="middle" className={classes.divSytle} /> */}
   
         <div>
         <List className={classes.drawerMediaHide} >
             <ListItem >
-               <a style={{cursor:'pointer'}} >
+               <a href="https://www.facebook.com/MrToi-103532734467304" target="_blank" style={{cursor:'pointer'}} >
                <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
             </ListItem>
             <ListItem >
-                <a style={{cursor:'pointer'}} >
+                <a href="https://www.instagram.com/mrtoi_official/" target="_blank" style={{cursor:'pointer'}} >
                   <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
             </ListItem>    
             <ListItem >
-                <a style={{cursor:'pointer'}} >
+                <a href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank" style={{cursor:'pointer'}} >
                   <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
             </ListItem>
             <ListItem >
-                <a style={{cursor:'pointer'}} >
+                <a href="https://twitter.com/MrToi10" target="_blank" style={{cursor:'pointer'}} >
                   <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
             </ListItem>
         </List>
@@ -118,11 +151,17 @@ import ReactDOM from 'react-dom'
       <div className={classes.root}>
        
           <div className={classes.grow} />
-          <div className={classes.homeDisplay} >
-          <text style={{color:this.props.textColor}} className={classes.textStyle} >Home</text>  
-          <a onClick={this.changeLocation} >  <text style={{color:this.props.textColor}} className={classes.textStyle} >Blog</text>  </a> 
-            <text style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
+         <div className={classes.homeDisplay} >
+         {  <div>
+          <text onClick={()=>this.props.history.push("/")} 
+          style={{color:this.props.textColor}} className={classes.textStyle} >Home</text> 
+          <text onClick={()=>this.props.history.push("/Blog")} 
+          style={{color:this.props.textColor}} className={classes.textStyle} >
+             Blog</text>
+            <text onClick={()=>this.props.history.push("/Contact")} 
+            style={{color:this.props.textColor}}  className={classes.textStyle} >Contact</text>  
             </div>
+            }</div>
      
             <div className={classes.spanDisplay} >
               <IconButton
@@ -283,7 +322,9 @@ const styles =theme=>({
     classes:PropTypes.object.isRequired,
   }
 // export default App
-export default withRouter(connect()(withStyles(styles)(DisplayDrawer)));
+// export default withRouter(connect()(withStyles(styles)(DisplayDrawer)));
 // export default compose(withStyles(styles) , connect(MapStateToProps , MapDispatchToProps))(DisplayDrawer);
 // export default   withStyles(styles)(DisplayDrawer);
+
+export default (withStyles(styles))(withRouter(DisplayDrawer));
 

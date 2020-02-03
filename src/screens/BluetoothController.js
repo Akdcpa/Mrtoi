@@ -153,8 +153,21 @@ class BluetoothController extends React.Component{
        ]
     }
   }
+  componentDidMount(){
+    const script = document.createElement("script");
+    script.src="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js";
+    script.async = true;
+    document.body.appendChild(script); }
+
+// loadScript =(src)=> {
+//       var tag = document.createElement('script');
+//       tag.async = false;
+//       tag.src = src;
+//       document.body.appendChild(tag);
+//     }
   
   render(){
+  
     const {classes} = this.props;   
     return(
       <div className={styles.root}>
@@ -184,15 +197,29 @@ class BluetoothController extends React.Component{
                         <TextStyle title="CODE" 
                         description="The Arduino code for Bluetooth Controlled Robot project is given below."
                         ></TextStyle>
+                      {/* <div  ref={el=>(this.instance=el)} > */}
+      {/* <a href="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js"></a> */}
+              {/* <div className="body" >
+                    {this.loadScript("https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js" )}
+                </div> */}
+
+
+<body></body>
+
                     </Grid>
+
+
                 </Grid>
                       {/* <Codes code={this.state.code} ></Codes> */}
+                    {/* <p>
                       <script src="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js" ></script> 
+                      </p> */}
+
+                      {/* </div> */}
                 <Grid spacing={5} className={classes.bottomGrid}  container >
                         <Grid item>
                         <TextStyle title="AIM" 
                         description="  In this project, I will show you how to design and develop a 
-                        Bluetooth Controlled Robot using Arduino, HC-05 Bluetooth Module and L298N Motor Driver Module. 
                         On the other end of the Bluetooth Communication,
                          I will be using a Smart Phone and a simple Android App to control the Robotic Car. "
                         ></TextStyle>  

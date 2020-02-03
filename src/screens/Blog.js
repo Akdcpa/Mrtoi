@@ -6,6 +6,7 @@ import BlogHead from '../components/BlogHead'
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core'
 import HomeNav from '../components/HomeNav'
+import {withRouter} from 'react-router-dom'
 class Blog extends React.Component{
   render(){
     const {classes} = this.props;
@@ -30,4 +31,4 @@ Blog.propTypes={
   classe:PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Blog);
+export default withStyles(styles)(withRouter(Blog));

@@ -39,10 +39,11 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
     <div style={{padding:15}}  ><text style={{fontSize:27 , fontWeight:'bold'}} >Be Social</text></div>
       {/* <div style={{padding:15}}  > <text style={{fontSize:19 , fontWeight:'lighter'}} >Phone:+91 8248314696</text></div>
       <div style={{padding:15}}  ><text style={{cursor:'pointer' , fontSize:19 , fontWeight:'bold'}} >mrtoi2020@gmail.com</text></div> */}
-     <div style={{paddingTop:35}} >  <FacebookIcon  style={{cursor:'pointer' ,width:40 , height:40 ,paddingRight:15 , color:'#3b5998'}} />
-       <InstagramIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15 , color:'#e4405f'}} />
-        <TwitterIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15, color:'#00acee'}} />
-        <LinkedInIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15, color:'#0e76a8'}}  />
+     <div style={{paddingTop:35}} >  
+     <a href="https://www.facebook.com/MrToi-103532734467304" target="_blank" >  <FacebookIcon  style={{cursor:'pointer' ,width:40 , height:40 ,paddingRight:15 , color:'#3b5998'}} /></a>
+      <a href="https://www.instagram.com/mrtoi_official/" target="_blank" > <InstagramIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15 , color:'#e4405f'}} /></a>
+      <a href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank" > <TwitterIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15, color:'#00acee'}} /></a>
+      <a  href="https://twitter.com/MrToi10"  target="_blank" > <LinkedInIcon style={{cursor:'pointer',width:40 , height:40 ,paddingRight:15, color:'#0e76a8'}}  /></a>
     </div>
     </Grid>
     </Grid>

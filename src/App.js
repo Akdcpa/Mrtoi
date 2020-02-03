@@ -9,19 +9,22 @@ import IotHome from './screens/IotHome'
 import LineFollower from './screens/LineFollower'
 import ObstacleAvoid from './screens/ObstacleAvoid'
 import BottomFooter from './screens/BottomFooter'
+import HomeNext from './components/HomeNext'
 export default class App extends React.Component{
   render(){
     return(
       <div className="App">
         <BrowserRouter>
           <Switch>
-              <Route path="/Home" exact component={Home} ></Route>
-              <Route path="/Blog" exact component={Blog} ></Route>
-              <Route path="/Contact" exact component={Contact} ></Route>
-              <Route path="/Home/BluetoothController" exact component={BluetoothController} ></Route>
-              <Route path="/Home/LineFollower" exact component={LineFollower} ></Route>
-              <Route path="/Home/ObstacleAvoid" exact component={ObstacleAvoid} ></Route>
-              <Route path="/Home/IotHome" exact component={IotHome} ></Route>
+              <Route path="/" exact component={Home} ></Route>
+              <Route path="/Blog"  component={Blog} ></Route>
+              <Route path="/Contact"  component={Contact} ></Route>
+              <Route path="/Home/BluetoothController"  component={BluetoothController} ></Route>
+              <Route path="/Home/LineFollower"  component={LineFollower} ></Route>
+              <Route path="/Home/ObstacleAvoid"  component={ObstacleAvoid} ></Route>
+              <Route path="/Home/IotHome"  component={IotHome} ></Route>
+              <Route path="/Home/HomeNext"  component={HomeNext} ></Route>
+
 
           </Switch>
         </BrowserRouter>

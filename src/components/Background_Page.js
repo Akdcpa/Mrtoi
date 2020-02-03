@@ -1,5 +1,6 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles'
+import {withRouter , Redirect} from 'react-router-dom'
 import {Button  , Grid}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -28,6 +29,8 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import MoreIcon from '../imgs/more.png'
 import HomeNav from './HomeNav'
 import SpanIcon from './SpanIcon'
+import {Link  , animateScroll as scroll , Events , Element , scrollSpy , scroller } from "react-scroll"
+import HomeNext from './HomeNext'
 import DisplayDrawer from './DisplayDrawer'
  class Background_Page extends React.Component{
   constructor(props) {
@@ -43,7 +46,10 @@ import DisplayDrawer from './DisplayDrawer'
        bottom: false,
        right: false,
        drawerStatus:false,
-      
+       fb_size:35,
+       insta_size:28,
+       twitter_size:35,
+       in_size:35,
       
     }
   }
@@ -81,17 +87,124 @@ import DisplayDrawer from './DisplayDrawer'
 
       }
     });
+
+
+    Events.scrollEvent.register('begin', function(to, element) {
+      console.log("begin", arguments);
+    });
+ 
+    Events.scrollEvent.register('end', function(to, element) {
+      console.log("end", arguments);
+    });
+    scrollSpy.update();
     
   }
+  
+
+  scrollBottom=()=>{
+    // scroll.scrollTo(700);
+   return <Link to={HomeNext}  />
+
+  }
+  componentWillUnmount(){
+    Events.scrollEvent.remove('begin');
+    Events.scrollEvent.remove('end');
+  }
+  
   render(){
     const {classes} = this.props;
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    this.setState({ ...this.state, [side]: open });
+  };
+  const fullList = side => (
+      <div
+        className={classes.fullList}
+        role="presentation"
+        onClick={toggleDrawer(side, false)}
+        onKeyDown={toggleDrawer(side, false)}
+      >
+        <List>
+        <ListItem
+          onClick={()=>this.props.history.push("/")}
+          button >
+            <ListItemIcon>
+            <HomeIcon style={{color:'white'}} /></ListItemIcon>
+            <ListItemText primary={<Typography style={{color:"white"}} >Home</Typography>} />
+          </ListItem>
+          <ListItem
+          onClick={()=>this.props.history.push("/Blog")}
+          button >
+            <ListItemIcon> <InfoIcon style={{color:'white'}}/>
+            </ListItemIcon>
+            <ListItemText primary={<Typography style={{color:"white"}} >Blog</Typography>} />
+          </ListItem>  
+          <ListItem
+          onClick={()=>this.props.history.push("/Contact")}
+          button >
+            <ListItemIcon><LocationOnIcon style={{color:'white'}} /> </ListItemIcon>
+            <ListItemText primary={<Typography style={{color:"white"}} >Contact</Typography>} />
+          </ListItem>
+
+      </List>
+      {/* <Divider variant="middle" className={classes.divSytle} /> */}
+
+      <div>
+      <List className={classes.drawerMediaHide} >
+          <ListItem >
+             <a href="https://www.facebook.com/MrToi-103532734467304" target="_blank" style={{cursor:'pointer'}} >
+             <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+          </ListItem>
+          <ListItem >
+              <a href="https://www.instagram.com/mrtoi_official/" target="_blank" style={{cursor:'pointer'}} >
+                <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+          </ListItem>    
+          <ListItem >
+              <a href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank" style={{cursor:'pointer'}} >
+                <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+          </ListItem>
+          <ListItem >
+              <a href="https://twitter.com/MrToi10" target="_blank" style={{cursor:'pointer'}} >
+                <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+          </ListItem>
+      </List>
+      </div>
+      </div>
+    );
     return(
       <div className={classes.root}>
           <div className={classes.header} >
-           
-            <DisplayDrawer extColor="white"
-              iconcolor="white"
-              backColor="black"  ></DisplayDrawer>
+   
+          <div className={classes.homeDisplay} >
+         {  <div>
+          <text onClick={()=>this.props.history.push("/")} 
+          style={{color:this.props.textColor}} className={classes.textStyle} >
+            {this.state.scrollEvent === true ?"":"Home"}</text> 
+          <text onClick={()=>this.props.history.push("/Blog")} 
+          style={{color:this.props.textColor}} className={classes.textStyle} >
+             {this.state.scrollEvent === true ?"":"Blog"}</text>
+            <text onClick={()=>this.props.history.push("/Contact")} 
+            style={{color:this.props.textColor}}  className={classes.textStyle} >
+               {this.state.scrollEvent === true ?"":"Contact"}</text>  
+            </div>
+            }</div>
+     
+            <div className={classes.spanDisplay} >
+              <IconButton
+                className={classes.sectionIcon}
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={toggleDrawer('top', true)}
+                color="inherit" 
+              >
+                <SpanIcon   color="white" ></SpanIcon>
+                </IconButton>
+            </div>
             <div className={classes.headerContent} style={{display:'flex',justifyContent:'center'}} >
               <div>
               <text style={{fontSize:'50px',
@@ -106,6 +219,7 @@ import DisplayDrawer from './DisplayDrawer'
             </div>
              <div className={classes.readbuttonBreak} >
               <Button size='large' onMouseEnter={this.handleButtonColor} 
+              onClick={this.scrollBottom}
                 onMouseLeave={this.handleButtonColor}
                 style={{backgroundColor:this.state.buttonColor ,
                 boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
@@ -118,7 +232,9 @@ import DisplayDrawer from './DisplayDrawer'
               <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
               </div>
             </div>
-     
+            <Drawer classes={{paper:classes.paper}} anchor="top" open={this.state.top} onClose={toggleDrawer('top', false)}>
+        {fullList('top')}
+      </Drawer>
         </div>
 
     );
@@ -217,23 +333,16 @@ const styles =theme=>({
     },
     drawerMediaHide:{
       display:'none',
-      // [theme.breakpoints.down('xs')]: {
-      //   display: 'block',
-      // },
+      [theme.breakpoints.down('xs')]: {
+        display: 'flex',
+      },
     },
     paper: {
-      background: "rgba(0,0,0,0.6)",
-      divSytle:{
-        backgroundColor:'white',
-        dispaly:'none',
-        [theme.breakpoints.down('xs')]:{
-          display:'flex'
-        },
-      },
+      background: "rgba(0,0,0,0.6)"},
       homeHide:{
         textAlign:'right',
         display:'block',
-      },
+   
         [theme.breakpoints.down('sm')]:{
           display:'none'
         }
@@ -266,62 +375,4 @@ const styles =theme=>({
     classes:PropTypes.object.isRequired,
   }
 // export default App
-export default  withStyles(styles)(Background_Page);
-
-   {/* { this.state.scrollEvent ? ((window.innerHeight<600 && window.innerWidth<600) ?
-            <AppBar position="sticky" className={classes.appBar}  >
-            <Toolbar>
-            <div className={classes.grow}/>
-            <div style={{display:'flex' , justifyContent:'flex-end' , paddingRight:15}} >
-              <IconButton
-                 className={classes.sectionIcon}
-                 aria-label="show more"
-                 aria-controls={mobileMenuId}
-                 aria-haspopup="true"
-                 onClick={toggleDrawer('right',true)}
-                 color="inherit" >
-                 <ListAltIcon />
-               </IconButton>
-               </div> 
-            </Toolbar>
-          </AppBar>: <AppBar position="sticky" className={classes.appBar}  >
-                    <Toolbar>
-                    <div className={classes.grow}/>
-                      <text className={classes.textStyle} >Home</text>  
-                      <text className={classes.textStyle} >Blog</text>  
-                      <text className={classes.textStyle} >Contact</text>  
-                    </Toolbar>
-                  </AppBar> ) : null
-          } */}
-
-
-
-            {/* <div className={classes.headAlign} >
-             
-              </div> 
-            <div className={classes.contentBreak}>
-              <text className={classes.textContent} >
-                IoT is the best opportunity for career oriented creators as they 
-                can learn,develop, build and understand system along with their own ideas and techniques
-                </text>
-            </div>
-             <div className={classes.readbuttonBreak} >
-              <Button size='large' onMouseEnter={this.handleButtonColor} 
-                onMouseLeave={this.handleButtonColor}
-                style={{backgroundColor:this.state.buttonColor ,
-                boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
-            </div>
-            </div>
-            <div style={{position:'absolute',bottom:20,right:0,left:0}} >
-            <div className="align-bottom" >
-              <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
-              style={{cursor:'pointer',color:this.state.exploreColor}}>
-              <text style={{fontSize:18}} >Explore</text>
-              <br></br>
-              <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
-            </div>
-         
-            <Drawer width={100} classes={{paper:classes.paper}} anchor="right" open={this.state.right} onClose={toggleDrawer('right', false)}>
-      {sideList('right')}
-      </Drawer>
-      </div> */}
+export default  withStyles(styles)(withRouter(Background_Page));

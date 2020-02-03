@@ -15,7 +15,7 @@ import LineFollower from  '../imgs/LineFollower.jpg'
 import Obstacle from '../imgs/ObstacleAvoidingRobot.jpg'
 import AutoRobot from '../imgs/Home-Automation-using-Local-Host.jpg'
 import AddIcon from '@material-ui/icons/Add';
-
+import {withRouter , Redirect} from 'react-router-dom'
 
 class CourseCard extends React.Component{
     constructor(props) {
@@ -49,7 +49,9 @@ class CourseCard extends React.Component{
                               backgroundPosition: 'center',display:'flex',
                               backgroundSize: 'cover',alignItems:'center' , justifyContent:'center',
                               padding:20}} >
-                            <div style={{display:this.state.overlay,
+                            <div
+                            onClick={()=>this.props.history.push(this.props.routePath)}
+                            style={{display:this.state.overlay,
                             backgroundColor: 'rgba(0, 0, 0, 0.6)' ,
                                 height:'30vh' , width:'40vh' ,  
                                 alignItems:'center' , justifyContent:'center' }} >
@@ -60,7 +62,7 @@ class CourseCard extends React.Component{
                               <Typography gutterBottom variant="body1" component="h2">
                                     {this.props.title}
                                   </Typography>
-                                  <Typography style={{}} variant="body2" color="textSecondary">
+                                  <Typography variant="body2" color="textSecondary">
                                       {this.props.description}
                                   </Typography>
                               </CardContent>
@@ -86,6 +88,6 @@ CourseCard.propTypes={
   classe:PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(CourseCard);
+export default withStyles(styles)(withRouter(CourseCard));
 
 
