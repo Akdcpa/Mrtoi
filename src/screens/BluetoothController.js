@@ -5,7 +5,10 @@ import CourseDetails from '../components/CourseDetails'
 import Image from '../imgs/BluetoothControlledRobot.jpg'
 import TextStyle from '../components/Courses/TextStyle';
 import List from '../components/Courses/List'
-
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import ReactDOM from 'react-dom'
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {Helmet} from 'react-helmet'
 class BluetoothController extends React.Component{
   constructor(props) {
     super(props)
@@ -23,155 +26,24 @@ class BluetoothController extends React.Component{
         "Android Phone",
         "Bluetooth Controller App",
        ],
-       code:[
-                  "#include<SoftwareSerial.h>",
-                  "   ",
-                  "#define IN1 12",
-                  "#define IN2 11",
-                  "#define IN3 10",
-                  "#define IN4 9",
-                  "//#define EN1 6",
-                  "//#define EN2 5",
-                  " ",
-                  "SoftwareSerial mySerial(2, 3);",
-                  "// RX, TX",
-                  "String data;",
-                  "int btVal;",
-                  " ",
-                  "void setup() ",
-                  " {  ",
-                    "//Serial.begin(115200);",
-                    "pinMode(IN1, OUTPUT);",
-                    "pinMode(IN2, OUTPUT);",
-                    "pinMode(IN3, OUTPUT);",
-                    "pinMode(IN4, OUTPUT);",
-                    "//pinMode(EN1, OUTPUT);",
-                    "//pinMode(EN2, OUTPUT);",
-                    "digitalWrite(IN1, LOW);",
-                    "digitalWrite(IN2, LOW);",
-                    "digitalWrite(IN3, LOW);",
-                    "digitalWrite(IN4, LOW);",
-                    "//analogWrite(EN1,63);",
-                    "//analogWrite(EN2,63);",
-                    "mySerial.begin(9600);",
-                "  }",
-                  " ",
-                  "void loop()",
-                  "{",
-                  "while, (mySerial.available())",
-                  "{  ",
-                  "  {  ",
-                        "data = mySerial.readStringUntil('\n');",
-                        "//Serial.print(str);             ",
-                    "}",
-                    " ",
-                    "btVal = (data.toInt());",
-                    "//Serial.print('BlueTooth Value');",
-                    "//Serial.println(btVal);",
-                    " ",
-                    " ",
-                    " ",
-                    "switch (btVal) ",
-                    "{",
-                        "case 1:",
-                          "//Serial.println('Forward');",
-                          "forward();",
-                          "break;",
-
-                        "case 2:        ",
-                        "//Serial.println('Reverse');",
-                          "reverse();",
-                          "break;",
-
-                        "case 3:",
-                        "//Serial.println('Left');",
-                          "left();",
-                          "break;",
-                          
-                        "case 4:",
-                          "//Serial.println('Right);",
-                          "right();",
-                          "break;",
-                          
-                        "case 5:",
-                          "//Serial.println('Stop');",
-                          "stoprobot();",
-                          "break;      ",
-                    " ",
-                    "}",
-                    " ",
-                  "} ",
-                  " ",
-                  " ",
-                                                                                
-                    "if (mySerial.available() < 0)",
-                      "{",
-                      "//Serial.println('No Bluetooth Data');",
-                      "}",
-                  " ",
-                  "}",
-                  " ",
-                  "void forward()",
-                  "{",
-                    "digitalWrite(IN1, HIGH);",
-                    "digitalWrite(IN2, LOW);",
-                    "digitalWrite(IN3, HIGH);",
-                    "digitalWrite(IN4, LOW);",
-                  "}",
-
-                  "void reverse()",
-                  "{",
-                    "digitalWrite(IN1, LOW);",
-                    "digitalWrite(IN2, HIGH);",
-                    "digitalWrite(IN3, LOW);",
-                    "digitalWrite(IN4, HIGH);",
-                  "}",
-
-                  "void left()",
-                  "{",
-                    "digitalWrite(IN1, LOW);",
-                    "digitalWrite(IN2, LOW);",
-                    "digitalWrite(IN3, HIGH);",
-                    "digitalWrite(IN4, LOW);",
-                  "}",
-
-                  "void right()",
-                  "{",
-                    "digitalWrite(IN1, HIGH);",
-                    "digitalWrite(IN2, LOW);",
-                    "digitalWrite(IN3, LOW);",
-                    "digitalWrite(IN4, LOW);",
-                  "}",
-
-                  "void stoprobot()",
-                  "{",
-                    "digitalWrite(IN1, LOW);",
-                    "digitalWrite(IN2, LOW);",
-                    "digitalWrite(IN3, LOW);",
-                    "digitalWrite(IN4, LOW);",
-                  "}",
-       ]
     }
   }
-  componentDidMount(){
-    const script = document.createElement("script");
-    script.src="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js";
-    script.async = true;
-    document.body.appendChild(script); }
+  componentDidMount() {
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    // s.src="https://gist.github.com/mrtoi/4044cb1e82df2235e86039440e47f48d.js"
+    s.innerHTML = "document.write('This is output by document.write()!')";
+    this.instance.appendChild(s);
+  }
 
-// loadScript =(src)=> {
-//       var tag = document.createElement('script');
-//       tag.async = false;
-//       tag.src = src;
-//       document.body.appendChild(tag);
-//     }
-  
   render(){
-  
+    
+  // const string = /
     const {classes} = this.props;   
     return(
       <div className={styles.root}>
-        <CourseDetails headLine="Bluetooth Controlled Robot" description="Robots are always a fancy topic for students, hobbyists and DIYers. 
+        {/* <CourseDetails headLine="Bluetooth Controlled Robot" description="Robots are always a fancy topic for students, hobbyists and DIYers. 
         If you are beginner, then building a robot (like a car or an arm) is probably one of the important projects to do after
         learning about the basics. If you remember the earlier tutorial, I have discussed about HC-05 Bluetooth Module and how to 
         interface one with Arduino. Also, I have provided a simple Bluetooth Controller App, which can be installed on your Android
@@ -197,25 +69,12 @@ class BluetoothController extends React.Component{
                         <TextStyle title="CODE" 
                         description="The Arduino code for Bluetooth Controlled Robot project is given below."
                         ></TextStyle>
-                      {/* <div  ref={el=>(this.instance=el)} > */}
-      {/* <a href="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js"></a> */}
-              {/* <div className="body" >
-                    {this.loadScript("https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js" )}
-                </div> */}
-
-
-<body></body>
-
+    
+   
                     </Grid>
 
 
                 </Grid>
-                      {/* <Codes code={this.state.code} ></Codes> */}
-                    {/* <p>
-                      <script src="https://gist.github.com/elktros/85acce5c098c4bd579727b57e21610d3.js" ></script> 
-                      </p> */}
-
-                      {/* </div> */}
                 <Grid spacing={5} className={classes.bottomGrid}  container >
                         <Grid item>
                         <TextStyle title="AIM" 
@@ -230,8 +89,33 @@ class BluetoothController extends React.Component{
                                 <List items={this.state.items} ></List>
                             </div>
                         </Grid>
-                </Grid>  
-          </div>
+                </Grid> 
+                <Helmet>
+                <script src="https://gist.github.com/mrtoi/4044cb1e82df2235e86039440e47f48d.js"></script>
+            </Helmet>componentDidMount () {
+    const script = document.createElement("script");
+
+    script.src = "https://use.typekit.net/foobar.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+}
+          </div> */}
+          
+            <script dangerouslySetInnerHTML={{__html: `
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://gist.github.com/mrtoi/4044cb1e82df2235e86039440e47f48d.js','ga');
+  ga('send', 'pageview');
+`}}
+            
+            type="text/babel" >
+              
+            </script>
+            
+            {/* <a href="https://gist.github.com/mrtoi/4044cb1e82df2235e86039440e47f48d.js" ></a> */}
+            <div ref={el => (this.instance = el)} />
       </div>
     );
   }
@@ -269,5 +153,6 @@ const styles =theme=>({
 BluetoothController.propTypes={
   classe:PropTypes.object.isRequired,
 }
+
 
 export default withStyles(styles)(BluetoothController);

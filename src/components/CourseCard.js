@@ -40,21 +40,16 @@ class CourseCard extends React.Component{
         <div style={{ paddingTop:40}} >
                           <Card className={classes.card} >
                               <CardMedia onMouseEnter={this.handleEvent}  onMouseLeave={this.handleEvent}
-                              style={{  
+                          className={classes.cardMedia}
+                          style={{  
+                          
                             backgroundImage:`url(${this.props.image})`,
-                              height: '30vh',
-                              width:'40vh',
-                              borderRadius:0,
-                              cursor:'pointer',
-                              backgroundPosition: 'center',display:'flex',
-                              backgroundSize: 'cover',alignItems:'center' , justifyContent:'center',
-                              padding:20}} >
+                             }} >
                             <div
+                            className={classes.overlayStyle}
                             onClick={()=>this.props.history.push(this.props.routePath)}
-                            style={{display:this.state.overlay,
-                            backgroundColor: 'rgba(0, 0, 0, 0.6)' ,
-                                height:'30vh' , width:'40vh' ,  
-                                alignItems:'center' , justifyContent:'center' }} >
+                            style={{display:this.state.overlay }} 
+                            >
                              <AddIcon style={{color:'white' , width:40 , height:40}} />
                             </div>
                               </CardMedia>
@@ -77,9 +72,35 @@ const styles =theme=>({
         flexGrow: 1,
     },
     card:{
-      maxWidth:'45vh',
+      width:'47vh',
       marginRight:20,
+      [theme.breakpoints.down('xs')]:{
+        maxWidth:'40vh'
+      }
       
+    },
+    overlayStyle:{
+      backgroundColor: 'rgba(0, 0, 0, 0.6)' ,
+      height:'24vh' ,
+      width:'40vh' ,
+      display:"flex",
+      alignItems:'center',
+      justifyContent:'center',
+      [theme.breakpoints.down('xs')]:{
+        height:'23vh' ,
+      width:'33vh' ,
+      }
+      // margin:20
+    },
+    cardMedia:{
+      height: '30vh',
+      width:'100%',
+      borderRadius:0,
+      cursor:'pointer',
+      backgroundPosition: 'center',display:'flex',
+      backgroundSize: 'cover',alignItems:'center' , justifyContent:'center',
+      // padding:20
+
     }
     
   });

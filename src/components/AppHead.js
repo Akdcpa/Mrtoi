@@ -232,13 +232,13 @@ twitterSize=(event)=>{
                    <div>
             <Toolbar className={classes.mediaHide} > 
                 <a onMouseEnter={this.fbSize}onMouseLeave={this.fbSize} href="https://www.facebook.com/MrToi-103532734467304" target="_blank"
-                 style={{cursor:'pointer'}} ><img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
+                 style={{cursor:'pointer'}} rel="noopener noreferrer" ><img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
                 <a onMouseEnter={this.instaSize}onMouseLeave={this.instaSize} href="https://www.instagram.com/mrtoi_official/"  target="_blank"
-                 style={{cursor:'pointer'}} ><img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
+                 style={{cursor:'pointer'}} rel="noopener noreferrer"><img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
                 <a onMouseEnter={this.inSize}onMouseLeave={this.inSize} href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank"
-                 style={{cursor:'pointer'}} ><img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
+                 style={{cursor:'pointer'}}rel="noopener noreferrer" ><img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
                 <a onMouseEnter={this.twitterSize}onMouseLeave={this.twitterSize} href="https://twitter.com/MrToi10" target="_blank" style={{cursor:'pointer'}}
-                style={{cursor:'pointer'}} ><img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
+                style={{cursor:'pointer'}}rel="noopener noreferrer"><img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
               </Toolbar>
             </div>
             </div>

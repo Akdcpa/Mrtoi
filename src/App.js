@@ -24,18 +24,8 @@ export default class App extends React.Component{
               <Route path="/Home/ObstacleAvoid"  component={ObstacleAvoid} ></Route>
               <Route path="/Home/IotHome"  component={IotHome} ></Route>
               <Route path="/Home/HomeNext"  component={HomeNext} ></Route>
-
-
           </Switch>
         </BrowserRouter>
-        {/* <SpanIcon/> */}
-        {/* <Home/> */}
-        {/* <Blog/> */}
-        {/* <Contact/> */}
-         {/* <LineFollower></LineFollower> */}
-         {/* <IotHome/> */}
-         {/* <BluetoothController/> */}
-         {/* <ObstacleAvoid/> */}
          <BottomFooter/>
 
       </div>

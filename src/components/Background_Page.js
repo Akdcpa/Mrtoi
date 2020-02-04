@@ -5,18 +5,13 @@ import {Button  , Grid}from '@material-ui/core'
 import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Facebook from '../imgs/fb_icon.png'
 import Instagram from '../imgs/icon.png'
 import Twitter from '../imgs/twitter_icon.png'
 import LinkedIn from '../imgs/linkedin_icon.png'
-import PhoneIcon from '@material-ui/icons/Phone';
-import  MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Drawer from '@material-ui/core/Drawer';
-import MoreOutlinedIcon from '@material-ui/icons/MoreOutlined';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -25,9 +20,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import InfoIcon from '@material-ui/icons/Info';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import MoreIcon from '../imgs/more.png'
-import HomeNav from './HomeNav'
 import SpanIcon from './SpanIcon'
 import {Link  , animateScroll as scroll , Events , Element , scrollSpy , scroller } from "react-scroll"
 import HomeNext from './HomeNext'
@@ -102,7 +94,7 @@ import DisplayDrawer from './DisplayDrawer'
   
 
   scrollBottom=()=>{
-    // scroll.scrollTo(700);
+    scroll.scrollTo(700);
    return <Link to={HomeNext}  />
 
   }
@@ -178,9 +170,10 @@ import DisplayDrawer from './DisplayDrawer'
     return(
       <div className={classes.root}>
           <div className={classes.header} >
-   
-          <div className={classes.homeDisplay} >
-         {  <div>
+        <Grid  justify="space-between" direction="column" container >
+            <Grid item >
+            <div className={classes.homeDisplay} >
+              <div>
           <text onClick={()=>this.props.history.push("/")} 
           style={{color:this.props.textColor}} className={classes.textStyle} >
             {this.state.scrollEvent === true ?"":"Home"}</text> 
@@ -190,9 +183,7 @@ import DisplayDrawer from './DisplayDrawer'
             <text onClick={()=>this.props.history.push("/Contact")} 
             style={{color:this.props.textColor}}  className={classes.textStyle} >
                {this.state.scrollEvent === true ?"":"Contact"}</text>  
-            </div>
-            }</div>
-     
+            </div></div>
             <div className={classes.spanDisplay} >
               <IconButton
                 className={classes.sectionIcon}
@@ -205,18 +196,23 @@ import DisplayDrawer from './DisplayDrawer'
                 <SpanIcon   color="white" ></SpanIcon>
                 </IconButton>
             </div>
-            <div className={classes.headerContent} style={{display:'flex',justifyContent:'center'}} >
-              <div>
-              <text style={{fontSize:'50px',
+            </Grid>
+          
+            <Grid className={classes.head} alignItems="center" justify="center" direction="row" container >
+              <Grid item >
+                <div>
+                  <text style={{fontSize:'50px',
                  color:'white' , fontWeight:700}}>Mr.Toi</text>
-                </div>
-            </div>
-            <div className={classes.content} >
+                 </div>
+              <Grid item >
               <text className={classes.textContent} >
                 IoT is the best opportunity for career oriented creators as they 
                 can learn,develop, build and understand system along with their own ideas and techniques
                 </text>
-            </div>
+                </Grid>
+                 </Grid>
+            </Grid>
+            <Grid className={classes.readmore} item >
              <div className={classes.readbuttonBreak} >
               <Button size='large' onMouseEnter={this.handleButtonColor} 
               onClick={this.scrollBottom}
@@ -224,14 +220,26 @@ import DisplayDrawer from './DisplayDrawer'
                 style={{backgroundColor:this.state.buttonColor ,
                 boxShadow:'#00a8bd',width:140 ,height:60 ,borderRadius:0}} >Read More</Button>
             </div>
-            <div>
-            <a onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore} 
-              style={{cursor:'pointer',color:this.state.exploreColor}}>
-              <text style={{fontSize:18}} >Explore</text>
-              <br></br>
-              <ExpandMoreIcon style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon></a>
-              </div>
-            </div>
+            </Grid>
+
+            <Grid className={classes.explore} item >  
+             <div 
+              style={{cursor:'pointer'}}>
+              <text onClick={this.scrollBottom}  onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore}  style={{fontSize:18 ,color:this.state.exploreColor}} >Explore</text>
+             </div>
+              <div> 
+                <ExpandMoreIcon  onClick={this.scrollBottom} style={{cursor:'pointer'}}
+                 onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore}  style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon>
+              </div>  
+
+            </Grid>
+         
+        </Grid>
+
+     
+        
+        
+        </div>
             <Drawer classes={{paper:classes.paper}} anchor="top" open={this.state.top} onClose={toggleDrawer('top', false)}>
         {fullList('top')}
       </Drawer>
@@ -248,27 +256,32 @@ const styles =theme=>({
       backgroundImage: `linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) , url(${backImage})`,
       height:window.innerHeight,
       backgroundPosition: 'center',
-      // backgroundRepeat: 'no-repeat',
+      backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
     },
     headerContent:{
         marginTop:60
     },
+    head:{
+      marginTop:100
+    },
     textStyle:{
       color:'white',
       fontSize:'20px',
       fontWeight:500,
-      paddingRight:30,
+      marginRight:30,
+      marginTop:30,
       cursor:'pointer',
     },
-    content:{  display:'flex',
+    content:{  
+      display:'flex',
     justifyContent:"center",
     margin:40
   },
   homeDisplay:{
     dispaly:'flex',
     textAlign:'right',
-    // marginTop:20,
+    marginTop:30,
     [theme.breakpoints.down("xs")]:{
       display:'none',
     }
@@ -286,23 +299,13 @@ const styles =theme=>({
     readbuttonBreak:{
       display:'flex' , 
       justifyContent:'center',
-      marginBottom:-50,
       [theme.breakpoints.down('md')]:{
         paddingTop:10,
       },
     },
-    exploreBreak:{
-      // display:'flex' , 
-      // justifyContent:'center',
-      // padding:'50px'
-      // position:'absolute',
-      // bottom:20,
-      // [theme.breakpoints.down('xs')]:{
-      //   bottom:-10,
-      // },
-      flex:1,
-      justifyContent:'flex-end',
-      
+    readmore:{
+
+      marginTop:85
     },
     spanDisplay:{
       display:'none',
@@ -313,6 +316,14 @@ const styles =theme=>({
         marginRight:25,
 
       },
+    },
+    explore:{
+      marginTop:100,
+      [theme.breakpoints.down("xs")]:{
+      dispaly:'none',
+      // bottom:-30
+      }
+      // justifyContent:'center'
     },
     grow:{
       flexGrow:1,
