@@ -100,6 +100,18 @@ const useStyles =theme => ({
         display:'flex'
       },
     },
+    contact:{
+      [theme.breakpoints.down("xs")]:{
+        fontSize:15
+
+      }
+    },
+    iconsize:{
+      [theme.breakpoints.down("xs")]:{
+        fontSize:25,
+        marginTop:3
+      }
+    }
 });
 
 class AppHead extends React.Component {
@@ -217,18 +229,19 @@ twitterSize=(event)=>{
       <div className={classes.grow}>
         <AppBar position="static" className={classes.appBar}  >
           <Toolbar>
-            <PhoneIcon/>
-            <Typography style={{marginRight:18}} >+918248314696</Typography>
+            <PhoneIcon  className={classes.iconsize} />
+              
+            <Typography className={classes.contact}  style={{marginRight:18}} >+918248314696</Typography>
                 <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
-                <MailOutlineIcon style={{color:this.state.mailColor}} /></a>
-                <a onMouseEnter={this.mailColorEvent} onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
-                <Typography style={{color:this.state.mailColor}} >ak@gmail.com</Typography></a>
+                <MailOutlineIcon className={classes.iconsize} style={{color:this.state.mailColor}} /></a>
+                <a onMouseEnter={this.mailColorEvent} 
+              href="mailto:mr.toi2020@gmail.com"
+             
+                onMouseLeave={this.mailColorEvent} style={{cursor:'pointer'}} >
+                <Typography className={classes.contact} style={{color:this.state.mailColor}} >mr.toi2020@gmail.com</Typography></a>
          
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-            {/* <text className={classes.textStyle} >Home</text>  
-                 <text className={classes.textStyle} >Blog</text>  
-                <text className={classes.textStyle} >Contact</text>   */}
                    <div>
             <Toolbar className={classes.mediaHide} > 
                 <a onMouseEnter={this.fbSize}onMouseLeave={this.fbSize} href="https://www.facebook.com/MrToi-103532734467304" target="_blank"

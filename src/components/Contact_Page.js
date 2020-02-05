@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {withStyles , Typography , Grid ,Paper, Button ,Card, OutlinedInput} from '@material-ui/core'
+import {withStyles , Typography , Grid ,Paper, Button ,Card, OutlinedInput,TextField} from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Letter from '../imgs/letter.svg'
  class Contact_Page extends React.Component {
@@ -14,7 +14,8 @@ import Letter from '../imgs/letter.svg'
                     <img className={classes.letterStyle} src={Letter} ></img>
                 </div>        
       </Grid>
-      <Card elevation={3} className={classes.paper} >
+       
+      <Card  elevation={0} className={classes.paper} >
       <Grid className={classes.secondGrid} justify='space-between' item direction='column'  >
           <div  className={classes.textField}  >
            <OutlinedInput className={classes.fieldWidth} style={{borderRadius:35 ,notchedOutline:30}} placeholder="Firstname" ></OutlinedInput>
@@ -26,8 +27,10 @@ import Letter from '../imgs/letter.svg'
            <OutlinedInput className={classes.fieldWidth} style={{borderRadius:35  }} placeholder="Email"></OutlinedInput>
            </div>
            <div  className={classes.textField}  >
-           <OutlinedInput className={classes.fieldWidth} multiline style={{borderRadius:20 ,height:100 }} placeholder="Your Question..." ></OutlinedInput>
+           <OutlinedInput margin="dense" className={classes.fieldWidth} multiline
+            style={{borderRadius:20 ,height:100 }} placeholder="Your Question..." ></OutlinedInput>
            </div>
+         
            <div  className={classes.textField}  >
            <Button className={classes.fieldWidth} style={{borderRadius:35 ,height:50  ,background:'rgba(0, 0, 0, 0) -webkit-linear-gradient(left, rgb(148, 115, 221) 0%, rgb(26, 201, 228) 100%) repeat scroll 0% 0%' }} >Send Message</Button>
            </div>
@@ -72,25 +75,27 @@ const styles=theme=>({
     },
     textField:{
         marginBottom:10,
-
-        // width:,
     },
     secondGrid:{
         display:'flex',
         justifyContent:"center",
         margin:40   ,
         [theme.breakpoints.down("xs")]:{
-            margin:30
+            margin:0
         }
     },
     paper:{
         backgroundColor:"rgba(0,0,0,0.06)",
-        borderRadius:20
+        [theme.breakpoints.down("xs")]:{
+            backgroundColor:"transparent",
+        },
+        borderRadius:20,
     },
     fieldWidth:{
         width:350,
         [theme.breakpoints.down("xs")]:{
-            width:300
+            // width:"100%"
+            maxWidth:300
         }
     }
 

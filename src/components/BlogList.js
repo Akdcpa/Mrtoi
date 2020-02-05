@@ -25,22 +25,38 @@ class BlogList extends React.Component{
          {
            img:keerthi,
            name:"M.KEERTHIVASAN",
-           job:"FOUNDER ,CEO"
+           job:"FOUNDER ,CEO",
+           fb_id:"https://www.facebook.com/keerthivasan1431999/" ,
+           insta_id:"https://www.instagram.com/k3vasan_official/",
+           linkedin_id:"https://www.linkedin.com/in/keerthivasan-manivannan-5a3193199/",
+           twitter_id:"https://twitter.com/K3vasanO/",
          },
          {
           img:muthu,           
           name:"MUTHUKUMAR",
-          job:"MENTOR"
+          job:"MENTOR",
+          fb_id:"#",
+          insta_id:"#",
+          linkedin_id:"#",
+          twitter_id:"#",
          },
          {
            img:abiraman,
            name:"K.ABIRAMAN",
-           job:"CHIEF TECHNICAL OFFICER"
+           job:"CHIEF TECHNICAL OFFICER",
+           fb_id:"https://www.facebook.com/abi.raman.528/",
+           insta_id:"https://www.instagram.com/abiraman_ak/",
+           linkedin_id:"https://www.linkedin.com/in/abiraman-k-3b20bb151/",
+           twitter_id:"https://twitter.com/AbiramanK1/",
          },
          {
            img:aravind,
            name:"ARAVIND",
-           job:"DIRECTING MANAGER"
+           job:"DIRECTING MANAGER",
+           fb_id:"https://www.facebook.com/aravind.balaji.334/",
+           insta_id:"https://twitter.com/AravindBalaji21/",
+           linkedin_id:"https://www.instagram.com/aravind.balaji.2000/",
+           twitter_id:"https://www.linkedin.com/in/aravind-balaji-4ab137141/",
          }
        ] , 
        gridAlign:(window.innerWidth <= 600 || window.innerHeight<=600 ? 'column' : 'row')
@@ -66,15 +82,13 @@ class BlogList extends React.Component{
                 <Typography variant='h6' className={classes.nameContent} >{data.name}</Typography>
                 <Typography className={classes.jobContent}  >{data.job}</Typography>
                 <Typography className={classes.mediaContent} >
-                      <FacebookIcon  style={{cursor:'pointer' , paddingRight:15 , color:'#3b5998'}} />
-                      <InstagramIcon style={{cursor:'pointer',paddingRight:15 , color:'#e4405f'}} />
-                      <TwitterIcon style={{cursor:'pointer',paddingRight:15, color:'#00acee'}} />
-                      <LinkedInIcon style={{cursor:'pointer',paddingRight:15, color:'#0e76a8'}}  />
+                  <a href={data.fb_id} target="_blank" rel="noopener noreferrer" ><FacebookIcon style={{cursor:'pointer' , marginRight:15 , color:'#3b5998'}} /></a>  
+                  <a href={data.insta_id} target="_blank"  rel="noopener noreferrer"  >     <InstagramIcon style={{cursor:'pointer',marginRight:15 , color:'#e4405f'}} /></a>  
+                  <a href={data.twitter_id} target="_blank" rel="noopener noreferrer"  >    <TwitterIcon style={{cursor:'pointer',marginRight:15, color:'#00acee'}} /></a>  
+                  <a href={data.linkedin_id} target="_blank" rel="noopener noreferrer"  >  <LinkedInIcon style={{cursor:'pointer',marginRight:15, color:'#0e76a8'}}  /></a>  
                 </Typography>
                 </Grid>
-    
             </Grid>
-            
             </Paper>
             </div>
         

@@ -310,7 +310,6 @@ const styles =theme=>({
     spanDisplay:{
       display:'none',
       [theme.breakpoints.down('xs')]:{
-       
         display:'flex',
         justifyContent:'flex-end',
         marginRight:25,
