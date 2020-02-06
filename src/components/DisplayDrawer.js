@@ -122,28 +122,7 @@ import { ClickAwayListener } from '@material-ui/core';
             </ListItem>
 
         </List>
-        {/* <Divider variant="middle" className={classes.divSytle} /> */}
-  
-        <div>
-        <List className={classes.drawerMediaHide} >
-            <ListItem >
-               <a href="https://www.facebook.com/MrToi-103532734467304" target="_blank" rel="noopener noreferrer"style={{cursor:'pointer'}} >
-               <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
-            </ListItem>
-            <ListItem >
-                <a href="https://www.instagram.com/mrtoi_official/" target="_blank"rel="noopener noreferrer" style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
-            </ListItem>    
-            <ListItem >
-                <a href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank"rel="noopener noreferrer" style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
-            </ListItem>
-            <ListItem >
-                <a href="https://twitter.com/MrToi10" target="_blank" rel="noopener noreferrer"style={{cursor:'pointer'}} >
-                  <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
-            </ListItem>
-        </List>
-        </div>
+    
         </div>
       );
     

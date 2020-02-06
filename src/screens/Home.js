@@ -7,27 +7,13 @@ import HomeNav from '../components/HomeNav'
 import Background_Page from '../components/Background_Page'
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
-import Facebook from '../imgs/fb_icon.png'
-import Instagram from '../imgs/icon.png'
-import Twitter from '../imgs/twitter_icon.png'
-import LinkedIn from '../imgs/linkedin_icon.png'
-import Drawer from '@material-ui/core/Drawer';
-import MoreOutlinedIcon from '@material-ui/icons/MoreOutlined';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import InfoIcon from '@material-ui/icons/Info';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import MoreIcon from '../imgs/more.png'
 import HomeNext from '../components/HomeNext'
 import HomeCourse from '../components/HomeCourse'
-import SpanIcon from '../components/SpanIcon'
+import '../components/animation.css'
 import Application from '../components/Application'
 import {Animated} from 'react-animated-css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import {Link  , animateScroll as scroll , Events , Element , scrollSpy , scroller } from "react-scroll"
 class Home extends React.Component{
   constructor(props) {
@@ -82,25 +68,16 @@ class Home extends React.Component{
     return(
       <div className={styles.root}>
         <AppHead/>
-        {
-              this.state.scrollEvent?<HomeNav textColor="black"
-              iconcolor="#a2a2a2"
-              backColor="white" ></HomeNav>:null
-            }
-   {/* <Animated animationIn="fadeInDown" animationOut="fadeInUp"
-            animationInDuration={400} animationOutDuration={400} isVisible={true}
-            > 
-            <HomeNav textColor="black"
-              iconcolor="#a2a2a2"
-              backColor="white" />
-          
-             </Animated> */}
-        {/* <HomeNav  backColor="white" textColor="black" /> */}
-
-        {/* <HomeNav/> */}
-        <Background_Page/>
-        {/* <Link to={Background_Page} /> */}
-        {/* <SpanIcon/> */}
+<ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={500}>
+            {this.state.visible && <HomeNav textColor="black"
+                  iconcolor="#a2a2a2"
+                  backColor="white" ></HomeNav>}
+            
+        </ReactCSSTransitionGroup>  
+        <Background_Page/> 
         <HomeNext/>
         <HomeCourse/> 
          <Application/>

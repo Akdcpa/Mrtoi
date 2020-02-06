@@ -65,18 +65,14 @@ import DisplayDrawer from './DisplayDrawer'
   componentDidMount() {
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop >30) {
-          this.setState({scrollEvent:true })
-          this.setState({textHide:false })
-
+      if (isTop >0) {
+          this.setState({textHide:true })
       }
     });
     document.addEventListener('scroll', () => {
       const isTop = window.scrollY ;
-      if (isTop<30) {
-          this.setState({scrollEvent:false})
-          this.setState({textHide:true })
-
+      if (isTop<10) {
+          this.setState({textHide:false })
       }
     });
 
@@ -128,6 +124,8 @@ import DisplayDrawer from './DisplayDrawer'
             <HomeIcon style={{color:'white'}} /></ListItemIcon>
             <ListItemText primary={<Typography style={{color:"white"}} >Home</Typography>} />
           </ListItem>
+          <Divider variant="middle" className={classes.divSytle} />
+
           <ListItem
           onClick={()=>this.props.history.push("/Blog")}
           button >
@@ -135,6 +133,8 @@ import DisplayDrawer from './DisplayDrawer'
             </ListItemIcon>
             <ListItemText primary={<Typography style={{color:"white"}} >Blog</Typography>} />
           </ListItem>  
+          <Divider variant="middle" className={classes.divSytle} />
+
           <ListItem
           onClick={()=>this.props.history.push("/Contact")}
           button >
@@ -143,46 +143,24 @@ import DisplayDrawer from './DisplayDrawer'
           </ListItem>
 
       </List>
-      {/* <Divider variant="middle" className={classes.divSytle} /> */}
-
-      <div>
-      <List className={classes.drawerMediaHide} >
-          <ListItem >
-             <a href="https://www.facebook.com/MrToi-103532734467304" target="_blank" style={{cursor:'pointer'}} >
-             <img style={{height:this.state.fb_size , weight:this.state.fb_size}} src={Facebook}/></a>
-          </ListItem>
-          <ListItem >
-              <a href="https://www.instagram.com/mrtoi_official/" target="_blank" style={{cursor:'pointer'}} >
-                <img style={{height:this.state.insta_size , weight:this.state.insta_size}} src={Instagram}/></a>
-          </ListItem>    
-          <ListItem >
-              <a href="https://www.linkedin.com/in/mr-toi-318193199" target="_blank" style={{cursor:'pointer'}} >
-                <img style={{height:this.state.in_size , weight:this.state.in_size}} src={LinkedIn}/></a>
-          </ListItem>
-          <ListItem >
-              <a href="https://twitter.com/MrToi10" target="_blank" style={{cursor:'pointer'}} >
-                <img style={{height:this.state.twitter_size , weight:this.state.twitter_size}} src={Twitter}/></a>
-          </ListItem>
-      </List>
-      </div>
       </div>
     );
     return(
       <div className={classes.root}>
           <div className={classes.header} >
-        <Grid  justify="space-between" direction="column" container >
+        <Grid   justify="space-between" direction="column" container >
             <Grid item >
             <div className={classes.homeDisplay} >
               <div>
           <text onClick={()=>this.props.history.push("/")} 
           style={{color:this.props.textColor}} className={classes.textStyle} >
-            {this.state.scrollEvent === true ?"":"Home"}</text> 
+            {this.state.textHide === true ?"":"Home"}</text> 
           <text onClick={()=>this.props.history.push("/Blog")} 
           style={{color:this.props.textColor}} className={classes.textStyle} >
-             {this.state.scrollEvent === true ?"":"Blog"}</text>
+             {this.state.textHide === true ?"":"Blog"}</text>
             <text onClick={()=>this.props.history.push("/Contact")} 
             style={{color:this.props.textColor}}  className={classes.textStyle} >
-               {this.state.scrollEvent === true ?"":"Contact"}</text>  
+               {this.state.textHide === true ?"":"Contact"}</text>  
             </div></div>
             <div className={classes.spanDisplay} >
               <IconButton
@@ -190,7 +168,7 @@ import DisplayDrawer from './DisplayDrawer'
                 aria-label="show more"
                 aria-controls={mobileMenuId}
                 aria-haspopup="true"
-                onClick={toggleDrawer('top', true)}
+                onClick={toggleDrawer('top', true)}s
                 color="inherit" 
               >
                 <SpanIcon   color="white" ></SpanIcon>
@@ -231,14 +209,8 @@ import DisplayDrawer from './DisplayDrawer'
                 <ExpandMoreIcon  onClick={this.scrollBottom} style={{cursor:'pointer'}}
                  onMouseEnter={this.handleExplore} onMouseLeave={this.handleExplore}  style={{color:this.state.exploreColor,fontSize:30}} ></ExpandMoreIcon>
               </div>  
-
             </Grid>
-         
-        </Grid>
-
-     
-        
-        
+        </Grid> 
         </div>
             <Drawer classes={{paper:classes.paper}} anchor="top" open={this.state.top} onClose={toggleDrawer('top', false)}>
         {fullList('top')}
@@ -313,7 +285,6 @@ const styles =theme=>({
         display:'flex',
         justifyContent:'flex-end',
         marginRight:25,
-
       },
     },
     explore:{

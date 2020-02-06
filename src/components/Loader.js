@@ -2,6 +2,10 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress'; 
 import {Button} from '@material-ui/core'
 import {Animated} from 'react-animated-css' 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import image from '../imgs/letter.svg'
+import HomeNav from './HomeNav'
+import './animation.css'
 class Loader extends React.Component {
   constructor(props) {
     super(props);
@@ -9,12 +13,28 @@ class Loader extends React.Component {
 
     this.state = {
       displayMessage: false,
-      vis:false
-    };
-
+      items: ['hello', 'world', 'click', 'me'],
+      vis:false,
+    };    
+    this.handleAdd = this.handleAdd.bind(this);
     this.timer = setTimeout(this.enableMessage, 250);
   }
 
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop >0) {
+        this.state.vis=true;
+      }
+    });
+    document.addEventListener('scroll', () => {
+      const isTop = window.scrollY ;
+      if (isTop<30) {
+        this.state.vis=false;
+          // this.setState({textHide:true })
+      }
+    });
+  }
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
@@ -25,25 +45,47 @@ class Loader extends React.Component {
 _setState=()=>{
   this.setState({vis:true})
 
+
 }
+
+handleAdd() {
+  // const newItems = this.state.items.concat([
+  //   prompt('Enter some text')
+  // ]);
+  // this.setState({items: newItems});
+
+  this.setState({vis:true})
+}
+
+handleRemove(i) {
+  let newItems = this.state.items.slice();
+  newItems.splice(i, 1);
+  this.setState({items: newItems});
+}
+
+
   render() {
-    const {displayMessage} = this.state;
+    const items = this.state.items.map((item, i) => (
+      <div key={item} onClick={() => this.handleRemove(i)}>
+                   <HomeNav ></HomeNav>
 
-    if (!displayMessage) {
-      return null;
-    }
+      </div>
+    ));
 
+
+  
     return (
       <div>
-     <Animated animationIn="zoomOut" animationOut="fadeOut" isVisible={false}>
-        <div>
-            hello world ;)
-        </div>
-        </Animated>
-                {/* <Button  onClick={this._setState}
-        style={{borderRadius:35 ,height:50  
-          ,background:'rgba(0, 0, 0, 0) -webkit-linear-gradient(left, rgb(148, 115, 221) 0%, rgb(26, 201, 228) 100%) repeat scroll 0% 0%' }} >
-           Click</Button> */}
+        {/* <button onClick={this.handleAdd}>Add Item</button> */}
+        <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+            {this.state.vis && <HomeNav textColor="black"
+                  iconcolor="#a2a2a2"
+                  backColor="white" ></HomeNav>}
+            
+        </ReactCSSTransitionGroup>
       </div>
     
     );

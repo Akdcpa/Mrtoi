@@ -15,7 +15,7 @@ export default class App extends React.Component{
   render(){
     return(
       <div className="App">
-        {/* <BrowserRouter>
+        <BrowserRouter>
           <Switch>
               <Route path="/" exact component={Home} ></Route>
               <Route path="/Blog"  component={Blog} ></Route>
@@ -27,8 +27,8 @@ export default class App extends React.Component{
               <Route path="/Home/HomeNext"  component={HomeNext} ></Route>
           </Switch>
         </BrowserRouter>
-         <BottomFooter/> */}
-         <Loader/>
+         <BottomFooter/>
+         {/* <Loader/> */}
 
       </div>
     );
