@@ -6,11 +6,7 @@ import backImage from '../imgs/back.jpg'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Facebook from '../imgs/fb_icon.png'
-import Instagram from '../imgs/icon.png'
-import Twitter from '../imgs/twitter_icon.png'
-import LinkedIn from '../imgs/linkedin_icon.png'
+import IconButton from '@material-ui/core/IconButton'; 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';

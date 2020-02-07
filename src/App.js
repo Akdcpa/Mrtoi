@@ -28,8 +28,6 @@ export default class App extends React.Component{
           </Switch>
         </BrowserRouter>
          <BottomFooter/>
-         {/* <Loader/> */}
-
       </div>
     );
   }
